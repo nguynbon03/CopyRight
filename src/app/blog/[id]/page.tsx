@@ -77,6 +77,25 @@ export default async function ArticlePage({ params }: Props) {
         </div>
       </section>
 
+      {/* Full-size image for photo articles */}
+      {article.type === "photo" && article.image && (
+        <section className="pb-8">
+          <div className="max-w-4xl mx-auto px-6">
+            <div className="bg-bg-secondary border border-border rounded-xl p-3">
+              <img
+                src={article.image}
+                alt={article.title}
+                className="w-full h-auto rounded-lg"
+                style={{ maxHeight: "80vh", objectFit: "contain" }}
+              />
+              <p className="text-xs text-text-muted text-center mt-2">
+                Original photograph by Robert Pham &middot; DMCA Protected ID: DMCA-2026-CopyRight &middot; Copyright Reg: TXu-2026-014287
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Header */}
       <section className="pb-6">
         <div className="max-w-3xl mx-auto px-6">
