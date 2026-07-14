@@ -30,30 +30,71 @@ interface ArticleThumbProps {
   category: string;
   title: string;
   type: string;
+  image?: string;
   size?: "sm" | "md" | "lg";
 }
 
-export function ArticleThumbnail({ category, title, type, size = "md" }: ArticleThumbProps) {
+export function ArticleThumbnail({ category, title, type, image, size = "md" }: ArticleThumbProps) {
   const gradient = gradients[category] || gradients.NEWS;
   const icon = catIcons[category] || <FileText className="w-5 h-5" />;
   const height = size === "lg" ? "aspect-[16/7]" : size === "sm" ? "aspect-[16/10]" : "aspect-[16/9]";
 
+  if (image) {
+    return (
+      <div className={`${height} relative overflow-hidden rounded-t-xl bg-bg-secondary`}>
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        
+        {/* Category badge */}
+        <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm text-white text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded">
+          {icon}
+          {category}
+        </div>
+
+        {/* Type badge */}
+        {type === "video" && (
+          <div className="absolute top-3 right-3 flex items-center gap-1 bg-black/50 backdrop-blur-sm text-white text-[10px] font-medium px-2 py-1 rounded">
+            <Video className="w-3 h-3" /> Video
+          </div>
+        )}
+        {type === "photo" && (
+          <div className="absolute top-3 right-3 flex items-center gap-1 bg-black/50 backdrop-blur-sm text-white text-[10px] font-medium px-2 py-1 rounded">
+            <Camera className="w-3 h-3" /> Gallery
+          </div>
+        )}
+        {type === "interview" && (
+          <div className="absolute top-3 right-3 flex items-center gap-1 bg-black/50 backdrop-blur-sm text-white text-[10px] font-medium px-2 py-1 rounded">
+            <Users className="w-3 h-3" /> Interview
+          </div>
+        )}
+
+        {/* Bottom title hint */}
+        <div className="absolute bottom-0 left-0 right-0 p-4">
+          <p className="text-white/90 text-xs font-medium line-clamp-1">{title}</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Fallback: gradient thumbnail
   return (
     <div className={`${height} bg-gradient-to-br ${gradient} relative overflow-hidden rounded-t-xl`}>
-      {/* Pattern overlay */}
       <div className="absolute inset-0 opacity-10" style={{
         backgroundImage: `radial-gradient(circle at 25% 25%, white 1px, transparent 1px),
                           radial-gradient(circle at 75% 75%, white 1px, transparent 1px)`,
         backgroundSize: "30px 30px",
       }} />
 
-      {/* Category badge */}
       <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-black/40 backdrop-blur-sm text-white text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded">
         {icon}
         {category}
       </div>
 
-      {/* Type badge */}
       {type === "video" && (
         <div className="absolute top-3 right-3 flex items-center gap-1 bg-black/40 backdrop-blur-sm text-white text-[10px] font-medium px-2 py-1 rounded">
           <Video className="w-3 h-3" /> Video
@@ -70,42 +111,12 @@ export function ArticleThumbnail({ category, title, type, size = "md" }: Article
         </div>
       )}
 
-      {/* Center icon */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-white/15">{icon}</div>
       </div>
 
-      {/* Bottom gradient with title hint */}
       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
         <p className="text-white/80 text-xs font-medium line-clamp-1">{title}</p>
-      </div>
-    </div>
-  );
-}
-
-export function FeaturedThumbnail({ category, title }: { category: string; title: string }) {
-  const gradient = gradients[category] || gradients.NEWS;
-  const icon = catIcons[category] || <FileText className="w-5 h-5" />;
-
-  return (
-    <div className="aspect-[16/7] bg-gradient-to-br ${gradient} relative overflow-hidden">
-      <div className={`absolute inset-0 bg-gradient-to-br ${gradient}`} />
-      <div className="absolute inset-0 opacity-5" style={{
-        backgroundImage: `linear-gradient(45deg, white 25%, transparent 25%),
-                          linear-gradient(-45deg, white 25%, transparent 25%),
-                          linear-gradient(45deg, transparent 75%, white 75%),
-                          linear-gradient(-45deg, transparent 75%, white 75%)`,
-        backgroundSize: "40px 40px",
-        backgroundPosition: "0 0, 0 20px, 20px -20px, -20px 0px",
-      }} />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-white/10 scale-[4]">{icon}</div>
-      </div>
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 md:p-8">
-        <span className="inline-block text-[10px] font-bold tracking-widest uppercase text-white/90 bg-white/10 backdrop-blur-sm px-2.5 py-1 rounded mb-3">
-          {category}
-        </span>
-        <h1 className="text-2xl md:text-3xl font-bold leading-tight text-white">{title}</h1>
       </div>
     </div>
   );

@@ -70,6 +70,7 @@ export default function BlogPage() {
               category={featured.cat}
               title={featured.title}
               type={featured.type}
+              image={featured.image}
               size="lg"
             />
             <div className="p-6">
@@ -103,6 +104,7 @@ export default function BlogPage() {
                   category={a.cat}
                   title={a.title}
                   type={a.type}
+                  image={a.image}
                   size="sm"
                 />
                 <div className="p-4">

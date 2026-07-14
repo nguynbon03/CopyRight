@@ -70,6 +70,7 @@ export default async function ArticlePage({ params }: Props) {
               category={article.cat}
               title={article.title}
               type={article.type}
+              image={article.image}
               size="lg"
             />
           </div>
@@ -153,7 +154,7 @@ export default async function ArticlePage({ params }: Props) {
                   href={`/blog/${r.id}`}
                   className="bg-bg-card border border-border rounded-xl overflow-hidden hover:border-border-hover transition-colors group"
                 >
-                  <ArticleThumbnail category={r.cat} title={r.title} type={r.type} size="sm" />
+                  <ArticleThumbnail category={r.cat} title={r.title} type={r.type} image={r.image} size="sm" />
                   <div className="p-4">
                     <span className="text-[9px] font-bold tracking-widest uppercase text-accent">
                       {r.cat}
