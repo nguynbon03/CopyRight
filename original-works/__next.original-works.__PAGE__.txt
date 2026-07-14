@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[79827,["/_next/static/chunks/3h5x_66hfgzfr.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/1_3dezpgxayyd.js"],"default"]
+3:I[97367,["/_next/static/chunks/3h5x_66hfgzfr.js","/_next/static/chunks/14mrh2-p_w84d.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[[["$","section",null,{"className":"pt-20 pb-8 border-b border-border bg-bg-secondary","children":["$","div",null,{"className":"max-w-7xl mx-auto px-6","children":[["$","h1",null,{"className":"text-2xl font-bold mb-2","children":"Our Original Content"}],["$","p",null,{"className":"text-sm text-text-secondary max-w-lg","children":"All content below was originally published by CelebPost. This registry serves as proof of ownership for DMCA enforcement."}]]}]}],["$","section",null,{"className":"py-10","children":["$","div",null,{"className":"max-w-7xl mx-auto px-6","children":["$","$L2",null,{}]}]}]],[["$","script","script-0",{"src":"/_next/static/chunks/1_3dezpgxayyd.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"INNtAMry8rRno5nxfzC1n"}
+5:null
