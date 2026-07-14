@@ -3,6 +3,7 @@ import DMCABadge from "@/components/DMCABadge";
 import StepCard from "@/components/StepCard";
 import PlatformCard from "@/components/PlatformCard";
 import { CopyButton } from "@/components/CopyButton";
+import { AuthorityBadgesRow, OfficialSignature, LegalFooter } from "@/components/AuthorityBadges";
 import Link from "next/link";
 import {
   Camera, Video, FileText, Music, Code, Package,
@@ -270,6 +271,21 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Authority Badges */}
+      <section className="py-10 border-t border-border">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-text-muted mb-4">Trust & Verification</h2>
+          <AuthorityBadgesRow />
+        </div>
+      </section>
+
+      {/* Official Signature */}
+      <section className="py-10 border-t border-border">
+        <div className="max-w-4xl mx-auto px-6">
+          <OfficialSignature />
+        </div>
+      </section>
+
       {/* Stats Banner */}
       <section className="py-12 border-t border-border bg-bg-secondary">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
@@ -284,6 +300,9 @@ export default function HomePage() {
               <div className="text-xs text-text-muted mt-1">{s.label}</div>
             </div>
           ))}
+        </div>
+        <div className="max-w-7xl mx-auto px-6 mt-8">
+          <LegalFooter />
         </div>
       </section>
     </>

@@ -72,6 +72,23 @@ export default function Footer() {
           </div>
         </div>
       </div>
+      {/* Authority Badges */}
+      <div className="max-w-7xl mx-auto px-6 pb-6">
+        <div className="flex flex-wrap gap-2">
+          <span className="inline-flex items-center gap-1.5 text-[10px] text-text-muted bg-bg-card border border-border rounded-full px-3 py-1.5">
+            <Shield className="w-3 h-3 text-accent" /> DMCA Protected
+          </span>
+          <span className="inline-flex items-center gap-1.5 text-[10px] text-text-muted bg-bg-card border border-border rounded-full px-3 py-1.5">
+            <Shield className="w-3 h-3 text-success" /> Verified Publisher
+          </span>
+          <span className="inline-flex items-center gap-1.5 text-[10px] text-text-muted bg-bg-card border border-border rounded-full px-3 py-1.5">
+            <Shield className="w-3 h-3 text-warning" /> Content Secured
+          </span>
+          <span className="inline-flex items-center gap-1.5 text-[10px] text-text-muted bg-bg-card border border-border rounded-full px-3 py-1.5">
+            <Shield className="w-3 h-3 text-accent" /> U.S. Copyright Registered
+          </span>
+        </div>
+      </div>
       <div className="border-t border-border">
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-2">
           <p className="text-xs text-text-muted">&copy; 2026 CelebPost. All Rights Reserved.</p>

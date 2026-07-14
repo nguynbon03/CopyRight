@@ -35,6 +35,13 @@ body {
   background-clip: text;
 }
 
+/* Signature font */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+.font-signature {
+  font-family: 'Dancing Script', cursive;
+}
+
 /* Badge glow effect */
 .badge-glow {
   box-shadow: 0 0 20px rgba(99, 102, 241, 0.2), 0 8px 32px rgba(0,0,0,0.5);
