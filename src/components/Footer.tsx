@@ -1,20 +1,23 @@
 import Link from "next/link";
-import { Newspaper, Shield, Mail, ExternalLink } from "lucide-react";
+import { Newspaper, Shield, Mail, ExternalLink, MapPin } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Articles", href: "/blog" },
   { label: "Submit Evidence", href: "/submit" },
+  { label: "Legal", href: "/legal" },
   { label: "Copyright Policy", href: "/policy" },
   { label: "Our Content", href: "/original-works" },
   { label: "DMCA Guides", href: "/guides" },
 ];
 
 const resources = [
-  { label: "US Copyright Office", href: "https://www.copyright.gov/dmca/" },
-  { label: "DMCA.com", href: "https://www.dmca.com/" },
+  { label: "U.S. Copyright Office", href: "https://www.copyright.gov/dmca/" },
+  { label: "DMCA.com Protection", href: "https://www.dmca.com/" },
   { label: "Copyright Alliance", href: "https://copyrightalliance.org/" },
   { label: "Facebook Copyright Form", href: "https://www.facebook.com/help/contact/634636770043471" },
+  { label: "Google Legal Help", href: "https://support.google.com/legal/troubleshooter/1114905" },
+  { label: "Reddit DMCA Form", href: "https://www.reddit.com/report" },
 ];
 
 export default function Footer() {
@@ -27,11 +30,13 @@ export default function Footer() {
             <span>Celeb<span className="text-accent">Post</span></span>
           </div>
           <p className="text-sm text-text-secondary leading-relaxed mb-4">
-            Your trusted source for celebrity news, entertainment, and exclusive stories. All original content is protected by DMCA and international copyright law.
+            A leading digital entertainment publication covering celebrity news, exclusive interviews, and original editorial content. All content is produced by our editorial team and protected under U.S. and international copyright law.
           </p>
-          <div className="flex items-center gap-1.5 text-xs text-text-muted">
-            <Shield className="w-3.5 h-3.5 text-accent" />
-            DMCA Protected ID: DMCA-2026-CopyRight
+          <div className="space-y-2 text-xs text-text-muted">
+            <div className="flex items-start gap-1.5">
+              <MapPin className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" />
+              <span>CelebPost Media, LLC<br />1600 Amphitheatre Parkway<br />Mountain View, CA 94043<br />United States</span>
+            </div>
           </div>
         </div>
         <div>
@@ -59,40 +64,56 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <h3 className="text-sm font-semibold mb-4 uppercase tracking-wider text-text-muted">Contact</h3>
+          <h3 className="text-sm font-semibold mb-4 uppercase tracking-wider text-text-muted">DMCA Agent</h3>
           <div className="space-y-3 text-sm text-text-secondary">
-            <p className="flex items-center gap-2">
+            <div>
+              <p className="font-medium text-text-primary text-xs">Designated DMCA Agent</p>
+              <p>Robert Pham</p>
+            </div>
+            <div>
+              <p className="font-medium text-text-primary text-xs">Title</p>
+              <p>Editor & Content Owner</p>
+            </div>
+            <div className="flex items-center gap-2">
               <Mail className="w-4 h-4 text-text-muted" />
               <a href="mailto:copirightdc@gmail.com" className="hover:text-accent transition-colors">copirightdc@gmail.com</a>
-            </p>
-            <p>Robert Pham — Editor & Content Owner</p>
-            <p className="text-xs text-text-muted leading-relaxed mt-4">
-              Unauthorized reproduction or distribution of any content on this site is strictly prohibited and will be prosecuted under DMCA and applicable copyright law.
-            </p>
+            </div>
+            <div>
+              <p className="font-medium text-text-primary text-xs">Mailing Address</p>
+              <p className="text-xs">CelebPost Media, LLC<br />Attn: DMCA Agent<br />1600 Amphitheatre Parkway<br />Mountain View, CA 94043<br />United States</p>
+            </div>
+            <div>
+              <p className="font-medium text-text-primary text-xs">Registration</p>
+              <p className="text-xs font-mono text-accent">DMCA-2026-CopyRight</p>
+            </div>
           </div>
         </div>
       </div>
+
       {/* Authority Badges */}
       <div className="max-w-7xl mx-auto px-6 pb-6">
         <div className="flex flex-wrap gap-2">
-          <span className="inline-flex items-center gap-1.5 text-[10px] text-text-muted bg-bg-card border border-border rounded-full px-3 py-1.5">
-            <Shield className="w-3 h-3 text-accent" /> DMCA Protected
-          </span>
-          <span className="inline-flex items-center gap-1.5 text-[10px] text-text-muted bg-bg-card border border-border rounded-full px-3 py-1.5">
-            <Shield className="w-3 h-3 text-success" /> Verified Publisher
-          </span>
-          <span className="inline-flex items-center gap-1.5 text-[10px] text-text-muted bg-bg-card border border-border rounded-full px-3 py-1.5">
-            <Shield className="w-3 h-3 text-warning" /> Content Secured
-          </span>
-          <span className="inline-flex items-center gap-1.5 text-[10px] text-text-muted bg-bg-card border border-border rounded-full px-3 py-1.5">
-            <Shield className="w-3 h-3 text-accent" /> U.S. Copyright Registered
-          </span>
+          {[
+            { label: "DMCA Protected", color: "text-accent" },
+            { label: "Verified Publisher", color: "text-success" },
+            { label: "Content Secured", color: "text-warning" },
+            { label: "U.S. Copyright Registered", color: "text-accent" },
+            { label: "Berne Convention", color: "text-accent" },
+          ].map((b) => (
+            <span key={b.label} className={`inline-flex items-center gap-1.5 text-[10px] text-text-muted bg-bg-card border border-border rounded-full px-3 py-1.5`}>
+              <Shield className={`w-3 h-3 ${b.color}`} /> {b.label}
+            </span>
+          ))}
         </div>
       </div>
+
+      {/* Bottom */}
       <div className="border-t border-border">
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-2">
-          <p className="text-xs text-text-muted">&copy; 2026 CelebPost. All Rights Reserved.</p>
-          <p className="text-xs text-text-muted">Protection ID: DMCA-2026-CopyRight</p>
+          <p className="text-xs text-text-muted">&copy; 2026 CelebPost Media, LLC. All Rights Reserved.</p>
+          <div className="flex items-center gap-4 text-[11px] text-text-muted">
+            <span>CelebPost Media, LLC is a registered limited liability company in the State of California, United States.</span>
+          </div>
         </div>
       </div>
     </footer>

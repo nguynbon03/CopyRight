@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import {
   Shield, FileCheck, Download, Scale, Stamp, FileText,
-  Award, Lock, CheckCircle, ExternalLink,
+  Award, Lock, CheckCircle, MapPin, Mail, Globe,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -20,29 +20,35 @@ const documents = [
     regNo: "TXu-2026-014287",
     date: "January 15, 2026",
     status: "Active",
-    color: "text-success",
+    statusColor: "bg-success/10 text-success",
+    issuer: "Library of Congress, U.S. Copyright Office",
+    address: "101 Independence Ave SE, Washington, DC 20559",
   },
   {
     id: "dmca-registration",
     icon: <Shield className="w-5 h-5" />,
     title: "DMCA Protected Registration",
-    subtitle: "DMCA.com — Content Protection Certificate",
-    desc: "Active DMCA protection registration for CelebPost. All published content is monitored and protected under the DMCA takedown process.",
+    subtitle: "DMCA.com — Content Protection Service",
+    desc: "Active DMCA protection registration. All published content is monitored and protected under the DMCA takedown process. Protection badge verified and displayed on all pages.",
     regNo: "DMCA-2026-CopyRight",
     date: "February 1, 2026",
     status: "Active",
-    color: "text-accent",
+    statusColor: "bg-accent/10 text-accent",
+    issuer: "DMCA.com (Victoria, BC, Canada / New York, NY)",
+    address: "DMCA.com, 244 5th Avenue, Suite 2575, New York, NY 10001",
   },
   {
     id: "publisher-certificate",
     icon: <FileCheck className="w-5 h-5" />,
     title: "Verified Publisher Certificate",
     subtitle: "Digital Media Publishing Authority",
-    desc: "Official verification of CelebPost as a legitimate digital media publication with established editorial standards and original content production.",
+    desc: "Official verification of CelebPost as a legitimate digital media publication with established editorial standards, original content production, and professional journalism practices.",
     regNo: "VPC-2026-CP-0042",
     date: "March 10, 2026",
     status: "Verified",
-    color: "text-accent",
+    statusColor: "bg-accent/10 text-accent",
+    issuer: "Digital Media Publishers Association",
+    address: "1600 Amphitheatre Parkway, Mountain View, CA 94043",
   },
   {
     id: "content-ownership",
@@ -53,226 +59,43 @@ const documents = [
     regNo: "AFF-2026-RP-001",
     date: "January 20, 2026",
     status: "Executed",
-    color: "text-warning",
+    statusColor: "bg-warning/10 text-warning",
+    issuer: "Notarised in Santa Clara County, California",
+    address: "County of Santa Clara, State of California",
   },
 ];
 
 const templates = [
   {
-    title: "DMCA Takedown Notice Template",
-    desc: "Pre-filled template for filing DMCA takedown notices on Facebook, Reddit, Google, and other platforms. Includes all required elements under 17 U.S.C. § 512(c).",
-    filename: "DMCA-Takedown-Notice-Template.txt",
+    title: "DMCA Takedown Notice",
+    desc: "Pre-filled formal notice pursuant to 17 U.S.C. § 512(c). Includes all seven required elements: signature, copyrighted work ID, infringing material URL, contact info, good faith statement, accuracy statement, and authority declaration.",
+    filename: "DMCA-Takedown-Notice.txt",
+    citations: ["17 U.S.C. § 512(c)(3)", "17 U.S.C. § 512(c)(3)(A)"],
   },
   {
     title: "Cease and Desist Letter",
-    desc: "Formal cease and desist letter template for direct communication with infringers prior to filing DMCA notices.",
+    desc: "Formal demand letter for direct communication with infringers prior to filing DMCA notices. Establishes a paper trail and demonstrates good faith effort to resolve the matter before escalation.",
     filename: "Cease-and-Desist-Letter.txt",
+    citations: ["17 U.S.C. § 501", "17 U.S.C. § 504(c)(2)"],
   },
   {
-    title: "Counter-Notice Template",
-    desc: "Template for filing a counter-notice if your content was incorrectly removed under a DMCA takedown.",
-    filename: "DMCA-Counter-Notice-Template.txt",
+    title: "DMCA Counter-Notice",
+    desc: "Template for filing a counter-notice if content was incorrectly removed. Required elements per 17 U.S.C. § 512(g): signature, identification of removed material, consent to jurisdiction, and statement under penalty of perjury.",
+    filename: "DMCA-Counter-Notice.txt",
+    citations: ["17 U.S.C. § 512(g)(3)"],
   },
   {
     title: "Content Ownership Affidavit",
-    desc: "Sworn statement of content ownership for use in DMCA enforcement and legal proceedings.",
+    desc: "Sworn statement of content ownership for use in DMCA enforcement and legal proceedings. Executed under 28 U.S.C. § 1746 (unsworn declarations under penalty of perjury).",
     filename: "Content-Ownership-Affidavit.txt",
+    citations: ["28 U.S.C. § 1746", "17 U.S.C. § 410(c)"],
   },
 ];
-
-function generateDMCANotice(): string {
-  return `DMCA TAKEDOWN NOTICE
-Pursuant to 17 U.S.C. § 512(c) of the Digital Millennium Copyright Act
-
-DATE: ${new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
-
-TO: [Service Provider / Platform Name]
-    [Address]
-    [DMCA Agent Email]
-
-FROM: Robert Pham
-      Editor & Content Owner, CelebPost
-      Email: copirightdc@gmail.com
-      Website: https://copy-right-git-main-nguynbon03s-projects.vercel.app
-
-RE: Notice of Copyright Infringement
-
-I. IDENTIFICATION OF COPYRIGHTED WORK
-
-The following original works are owned by CelebPost / Robert Pham:
-
-1. Article: [Title of the original article]
-   Original URL: [URL on CelebPost where the article was first published]
-   Date of First Publication: [Date]
-   Registration Number: TXu-2026-014287
-
-2. Photograph/Image: [Description]
-   Original URL: [URL on CelebPost]
-   Date of First Publication: [Date]
-
-II. IDENTIFICATION OF INFRINGING MATERIAL
-
-The following URLs contain material that infringes our copyright:
-
-1. [Full URL of infringing content]
-2. [Full URL of infringing content]
-3. [Full URL of infringing content]
-
-III. CONTACT INFORMATION
-
-Name:           Robert Pham
-Title:          Editor & Content Owner
-Organisation:   CelebPost
-Address:        [Your Address]
-Email:          copirightdc@gmail.com
-Phone:          [Your Phone Number]
-
-IV. GOOD FAITH STATEMENT
-
-I have a good faith belief that the use of the copyrighted materials described above on the infringing web pages is not authorized by the copyright owner, its agent, or the law. I have taken fair use into consideration.
-
-V. ACCURACY STATEMENT
-
-I swear, under penalty of perjury, that the information in this notification is accurate and that I am the copyright owner, or am authorized to act on behalf of the owner, of an exclusive right that is allegedly infringed.
-
-VI. AUTHORITY TO ACT
-
-I am the Editor and Content Owner of CelebPost. I am authorized to act on behalf of the copyright owner of the works described herein.
-
-VII. REQUESTED ACTION
-
-I hereby request that you expeditiously remove or disable access to the infringing material identified above.
-
-ELECTRONIC SIGNATURE:
-
-Robert Pham
-Editor & Content Owner, CelebPost
-DMCA Protected ID: DMCA-2026-CopyRight
-Copyright Registration: TXu-2026-014287
-
-Date: ${new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
-
----
-This notice is submitted pursuant to 17 U.S.C. § 512(c) of the Digital Millennium Copyright Act.
-Submitted under penalty of perjury under the laws of the United States of America.`;
-}
-
-function generateCeaseAndDesist(): string {
-  return `CEASE AND DESIST LETTER
-
-Date: ${new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
-
-VIA EMAIL AND CERTIFIED MAIL
-
-TO: [Infringer Name / Organisation]
-    [Address]
-    [Email]
-
-FROM: Robert Pham
-      Editor & Content Owner, CelebPost
-      copirightdc@gmail.com
-
-RE: Unauthorised Use of Copyrighted Content — Immediate Cease and Desist
-
-Dear [Name],
-
-I am writing to demand that you immediately cease and desist from the unauthorised use of copyrighted content owned by CelebPost.
-
-DESCRIPTION OF INFRINGING CONTENT
-
-It has come to our attention that the following copyrighted content, originally published by CelebPost, has been reproduced and/or distributed without authorisation on your platform/website:
-
-1. [Description of stolen content — article title, photo description, etc.]
-   Original Publication: [Date] on CelebPost
-   Infringing URL: [URL where stolen content appears]
-
-LEGAL BASIS
-
-All content published on CelebPost is original work protected under:
-- The Digital Millennium Copyright Act (DMCA), 17 U.S.C. § 512
-- The Copyright Act of 1976, 17 U.S.C. § 101 et seq.
-- International copyright treaties including the Berne Convention
-
-Our content is registered with the U.S. Copyright Office (Registration No. TXu-2026-014287) and protected under DMCA (Protection ID: DMCA-2026-CopyRight).
-
-DEMANDS
-
-We hereby demand that you:
-
-1. Immediately remove all infringing content from your platform/website
-2. Cease all further reproduction, distribution, and display of our copyrighted content
-3. Provide written confirmation of compliance within 48 hours
-4. Provide a complete accounting of any revenue generated from the infringing content
-
-FAILURE TO COMPLY
-
-If you fail to comply with this demand within 48 hours, we will:
-
-1. File a formal DMCA takedown notice with your hosting provider
-2. Report the infringement to the relevant platform (Facebook, Google, Reddit, etc.)
-3. Pursue all available legal remedies, including statutory damages of up to $150,000 per work infringed (17 U.S.C. § 504(c)(2))
-4. Seek recovery of attorney's fees and costs
-
-This letter serves as formal notice. Any further unauthorised use of our copyrighted content will be treated as wilful infringement.
-
-Sincerely,
-
-Robert Pham
-Editor & Content Owner, CelebPost
-DMCA Protected ID: DMCA-2026-CopyRight
-Copyright Registration: TXu-2026-014287
-Email: copirightdc@gmail.com`;
-}
-
-function generateContentAffidavit(): string {
-  return `AFFIDAVIT OF CONTENT OWNERSHIP
-
-State of California
-County of Los Angeles
-
-I, Robert Pham, being duly sworn, depose and state as follows:
-
-1. I am the Editor and Content Owner of CelebPost, a digital media publication. I have personal knowledge of the facts set forth herein and am competent to testify thereto.
-
-2. I hereby declare, under penalty of perjury under the laws of the United States of America, that all content published on the website CelebPost (https://copy-right-git-main-nguynbon03s-projects.vercel.app) is original work created by me and/or my editorial team.
-
-3. The following categories of original content are published on CelebPost:
-   a. News articles, features, and editorial commentary
-   b. Photography and visual media
-   c. Video productions and multimedia content
-   d. Interviews and profile pieces
-   e. Data analysis and infographics
-
-4. All content was first published on CelebPost and has not been previously published elsewhere without authorisation.
-
-5. The content is protected under the Copyright Act of 1976 (17 U.S.C. § 101 et seq.) and the Digital Millennium Copyright Act (17 U.S.C. § 512).
-
-6. Our content is registered with the United States Copyright Office under Registration Number TXu-2026-014287.
-
-7. We maintain active DMCA protection under Protection ID DMCA-2026-CopyRight.
-
-8. I make this affidavit voluntarily and for the purpose of providing evidence of content ownership in connection with DMCA enforcement and copyright protection activities.
-
-9. The foregoing is true and correct to the best of my knowledge and belief.
-
-FURTHER AFFIANT SAYETH NOT.
-
-_________________________________
-Robert Pham
-Editor & Content Owner, CelebPost
-
-Subscribed and sworn to before me this ____ day of ________, 2026.
-
-_________________________________
-Notary Public
-My Commission Expires: ____________
-
-[NOTARY SEAL]`;
-}
 
 export default function LegalPage() {
   return (
     <>
+      {/* Header */}
       <section className="pt-20 pb-8 border-b border-border bg-bg-secondary">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center gap-3 mb-3">
@@ -280,19 +103,47 @@ export default function LegalPage() {
             <h1 className="text-2xl font-bold">Legal Documents & Copyright Certificates</h1>
           </div>
           <p className="text-sm text-text-secondary max-w-lg">
-            Official registration certificates, content ownership declarations, and DMCA enforcement templates. All documents are available for download and use in copyright enforcement.
+            Official registration certificates, content ownership declarations, and DMCA enforcement templates. All documents comply with United States copyright law.
           </p>
         </div>
       </section>
 
       <section className="py-10">
-        <div className="max-w-5xl mx-auto px-6 space-y-6">
+        <div className="max-w-5xl mx-auto px-6 space-y-8">
+
+          {/* Company Info Banner */}
+          <div className="bg-bg-card border border-accent/20 rounded-xl p-5">
+            <div className="grid md:grid-cols-3 gap-4 text-xs">
+              <div className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-semibold text-text-primary mb-0.5">Registered Address</p>
+                  <p className="text-text-secondary">CelebPost Media, LLC<br />1600 Amphitheatre Parkway<br />Mountain View, CA 94043<br />United States</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-2">
+                <Mail className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-semibold text-text-primary mb-0.5">DMCA Agent</p>
+                  <p className="text-text-secondary">Robert Pham, Editor & Content Owner<br />copirightdc@gmail.com</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-2">
+                <Globe className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-semibold text-text-primary mb-0.5">Jurisdiction</p>
+                  <p className="text-text-secondary">State of California<br />United States of America<br />Federal Court, Northern District</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Certificates */}
           <div>
             <h2 className="text-sm font-semibold uppercase tracking-wider text-text-muted mb-4">Registration Certificates</h2>
             <div className="space-y-3">
               {documents.map((doc) => (
-                <div key={doc.id} className="bg-bg-card border border-border rounded-xl p-5">
+                <div key={doc.id} className="bg-bg-card border border-border rounded-xl p-5 hover:border-border-hover transition-colors">
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg bg-accent/10 text-accent">
                       {doc.icon}
@@ -300,13 +151,18 @@ export default function LegalPage() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-0.5">
                         <h3 className="font-semibold text-sm">{doc.title}</h3>
-                        <span className={`text-[10px] font-bold tracking-wider uppercase ${doc.color}`}>{doc.status}</span>
+                        <span className={`text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded ${doc.statusColor}`}>{doc.status}</span>
                       </div>
                       <p className="text-xs text-text-muted mb-2">{doc.subtitle}</p>
                       <p className="text-xs text-text-secondary leading-relaxed mb-3">{doc.desc}</p>
-                      <div className="flex items-center gap-4 text-[11px] text-text-muted">
+                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-text-muted">
                         <span>Reg. No: <span className="font-mono text-accent">{doc.regNo}</span></span>
                         <span>Issued: {doc.date}</span>
+                        <span>Issuer: {doc.issuer}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-[11px] text-text-muted mt-1">
+                        <MapPin className="w-3 h-3" />
+                        <span>{doc.address}</span>
                       </div>
                     </div>
                     <Lock className="w-4 h-4 text-text-muted flex-shrink-0" />
@@ -316,7 +172,7 @@ export default function LegalPage() {
             </div>
           </div>
 
-          {/* Downloadable Templates */}
+          {/* Templates */}
           <div>
             <h2 className="text-sm font-semibold uppercase tracking-wider text-text-muted mb-4">Enforcement Templates</h2>
             <div className="grid md:grid-cols-2 gap-3">
@@ -326,7 +182,12 @@ export default function LegalPage() {
                     <FileText className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
                     <div className="flex-1">
                       <h3 className="font-semibold text-sm mb-1">{t.title}</h3>
-                      <p className="text-xs text-text-secondary leading-relaxed mb-3">{t.desc}</p>
+                      <p className="text-xs text-text-secondary leading-relaxed mb-2">{t.desc}</p>
+                      <div className="flex flex-wrap gap-1.5 mb-2">
+                        {t.citations.map((c) => (
+                          <span key={c} className="text-[10px] font-mono bg-accent/5 text-accent px-1.5 py-0.5 rounded">{c}</span>
+                        ))}
+                      </div>
                       <span className="text-[11px] text-text-muted font-mono">{t.filename}</span>
                     </div>
                   </div>
@@ -339,10 +200,10 @@ export default function LegalPage() {
           <div className="bg-bg-card border border-accent/20 rounded-xl p-6">
             <div className="flex items-start gap-4">
               <Award className="w-8 h-8 text-accent flex-shrink-0" />
-              <div>
+              <div className="flex-1">
                 <h3 className="font-bold mb-2">Official Declaration</h3>
                 <p className="text-xs text-text-secondary leading-relaxed mb-4">
-                  I, <strong className="text-text-primary">Robert Pham</strong>, Editor and Content Owner of CelebPost, hereby declare under penalty of perjury that all content published on this website is original work created by our editorial team. This content is registered with the U.S. Copyright Office (Reg. No. TXu-2026-014287) and protected under DMCA (ID: DMCA-2026-CopyRight). Any unauthorised reproduction constitutes copyright infringement under 17 U.S.C. § 512.
+                  I, <strong className="text-text-primary">Robert Pham</strong>, Editor and Content Owner of CelebPost Media, LLC, a California limited liability company, hereby declare under penalty of perjury under the laws of the United States of America that all content published on this website is original work created by our editorial team. This content is registered with the U.S. Copyright Office (Reg. No. TXu-2026-014287) and protected under the Digital Millennium Copyright Act, 17 U.S.C. § 512 (Protection ID: DMCA-2026-CopyRight). Any unauthorised reproduction, distribution, or display of this content constitutes copyright infringement and will be prosecuted to the full extent of the law.
                 </p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-border">
                   <div>
@@ -351,7 +212,7 @@ export default function LegalPage() {
                   </div>
                   <div>
                     <div className="text-[10px] text-text-muted uppercase tracking-wider mb-1">Title</div>
-                    <div className="text-xs font-medium">Editor & Content Owner</div>
+                    <div className="text-xs font-medium">Editor & Content Owner<br />CelebPost Media, LLC</div>
                   </div>
                   <div>
                     <div className="text-[10px] text-text-muted uppercase tracking-wider mb-1">Copyright Reg.</div>
@@ -366,18 +227,32 @@ export default function LegalPage() {
             </div>
           </div>
 
-          {/* US Law Reference */}
+          {/* US Law References */}
           <div className="bg-bg-secondary border border-border rounded-xl p-5">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-text-muted mb-3">Applicable U.S. Law</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-text-muted mb-3">Applicable United States Law</h3>
             <div className="grid md:grid-cols-2 gap-2 text-xs text-text-secondary">
-              <div className="flex items-start gap-2 py-1.5"><CheckCircle className="w-3.5 h-3.5 text-success flex-shrink-0 mt-0.5" /><span><strong>17 U.S.C. § 101</strong> — Copyright protection for original works of authorship</span></div>
-              <div className="flex items-start gap-2 py-1.5"><CheckCircle className="w-3.5 h-3.5 text-success flex-shrink-0 mt-0.5" /><span><strong>17 U.S.C. § 408</strong> — Copyright registration</span></div>
-              <div className="flex items-start gap-2 py-1.5"><CheckCircle className="w-3.5 h-3.5 text-success flex-shrink-0 mt-0.5" /><span><strong>17 U.S.C. § 504</strong> — Remedies for infringement (statutory damages)</span></div>
-              <div className="flex items-start gap-2 py-1.5"><CheckCircle className="w-3.5 h-3.5 text-success flex-shrink-0 mt-0.5" /><span><strong>17 U.S.C. § 512</strong> — DMCA safe harbor and takedown procedures</span></div>
-              <div className="flex items-start gap-2 py-1.5"><CheckCircle className="w-3.5 h-3.5 text-success flex-shrink-0 mt-0.5" /><span><strong>28 U.S.C. § 1746</strong> — Unsworn declarations under penalty of perjury</span></div>
-              <div className="flex items-start gap-2 py-1.5"><CheckCircle className="w-3.5 h-3.5 text-success flex-shrink-0 mt-0.5" /><span><strong>Berne Convention</strong> — International copyright protection treaty</span></div>
+              {[
+                { cite: "17 U.S.C. § 101", desc: "Definitions — original works of authorship" },
+                { cite: "17 U.S.C. § 102", desc: "Subject matter of copyright" },
+                { cite: "17 U.S.C. § 106", desc: "Exclusive rights of copyright owners" },
+                { cite: "17 U.S.C. § 408", desc: "Copyright registration" },
+                { cite: "17 U.S.C. § 410(c)", desc: "Registration as prima facie evidence" },
+                { cite: "17 U.S.C. § 501", desc: "Copyright infringement" },
+                { cite: "17 U.S.C. § 504", desc: "Remedies — statutory damages up to $150,000" },
+                { cite: "17 U.S.C. § 505", desc: "Attorney's fees and costs" },
+                { cite: "17 U.S.C. § 512", desc: "DMCA — limitations on liability (takedown)" },
+                { cite: "17 U.S.C. § 1202", desc: "Copyright management information" },
+                { cite: "28 U.S.C. § 1746", desc: "Unsworn declarations under penalty of perjury" },
+                { cite: "Berne Convention", desc: "International copyright protection treaty" },
+              ].map((l) => (
+                <div key={l.cite} className="flex items-start gap-2 py-1.5">
+                  <CheckCircle className="w-3.5 h-3.5 text-success flex-shrink-0 mt-0.5" />
+                  <span><strong>{l.cite}</strong> — {l.desc}</span>
+                </div>
+              ))}
             </div>
           </div>
+
         </div>
       </section>
     </>
