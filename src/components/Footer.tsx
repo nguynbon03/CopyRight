@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Newspaper, Shield, Mail, ExternalLink, MapPin } from "lucide-react";
+import { Newspaper, Shield, Mail, ExternalLink, MapPin, Phone } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -27,20 +27,20 @@ export default function Footer() {
         <div>
           <div className="flex items-center gap-2 font-bold mb-3">
             <Newspaper className="w-5 h-5 text-accent" />
-            <span>Celeb<span className="text-accent">Post</span></span>
+            <span className="text-text-primary">Celeb<span className="text-accent">Post</span></span>
           </div>
           <p className="text-sm text-text-secondary leading-relaxed mb-4">
             A leading digital entertainment publication covering celebrity news, exclusive interviews, and original editorial content. All content is produced by our editorial team and protected under U.S. and international copyright law.
           </p>
           <div className="space-y-2 text-xs text-text-muted">
             <div className="flex items-start gap-1.5">
-              <MapPin className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" />
+              <MapPin className="w-3.5 h-3.5 flex-shrink-0 mt-0.5 text-accent" />
               <span>CelebPost Media, LLC<br />1600 Amphitheatre Parkway<br />Mountain View, CA 94043<br />United States</span>
             </div>
           </div>
         </div>
         <div>
-          <h3 className="text-sm font-semibold mb-4 uppercase tracking-wider text-text-muted">Navigation</h3>
+          <h3 className="text-xs font-semibold mb-4 uppercase tracking-wider text-text-muted">Navigation</h3>
           <ul className="space-y-2">
             {navLinks.map((l) => (
               <li key={l.href}>
@@ -52,7 +52,7 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <h3 className="text-sm font-semibold mb-4 uppercase tracking-wider text-text-muted">Copyright Resources</h3>
+          <h3 className="text-xs font-semibold mb-4 uppercase tracking-wider text-text-muted">Copyright Resources</h3>
           <ul className="space-y-2">
             {resources.map((r) => (
               <li key={r.href}>
@@ -64,7 +64,7 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <h3 className="text-sm font-semibold mb-4 uppercase tracking-wider text-text-muted">DMCA Agent</h3>
+          <h3 className="text-xs font-semibold mb-4 uppercase tracking-wider text-text-muted">DMCA Agent</h3>
           <div className="space-y-3 text-sm text-text-secondary">
             <div>
               <p className="font-medium text-text-primary text-xs">Designated DMCA Agent</p>
@@ -75,7 +75,7 @@ export default function Footer() {
               <p>Editor & Content Owner</p>
             </div>
             <div className="flex items-center gap-2">
-              <Mail className="w-4 h-4 text-text-muted" />
+              <Mail className="w-4 h-4 text-accent" />
               <a href="mailto:copirightdc@gmail.com" className="hover:text-accent transition-colors">copirightdc@gmail.com</a>
             </div>
             <div>
@@ -100,7 +100,7 @@ export default function Footer() {
             { label: "U.S. Copyright Registered", color: "text-accent" },
             { label: "Berne Convention", color: "text-accent" },
           ].map((b) => (
-            <span key={b.label} className={`inline-flex items-center gap-1.5 text-[10px] text-text-muted bg-bg-card border border-border rounded-full px-3 py-1.5`}>
+            <span key={b.label} className={`inline-flex items-center gap-1.5 text-[10px] text-text-muted bg-white border border-border rounded-full px-3 py-1.5`}>
               <Shield className={`w-3 h-3 ${b.color}`} /> {b.label}
             </span>
           ))}

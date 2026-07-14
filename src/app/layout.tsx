@@ -5,28 +5,23 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: "CelebPost — Celebrity News & Entertainment",
+    default: "CelebPost — Celebrity News & Copyright Protection",
     template: "%s | CelebPost",
   },
   description:
-    "Your source for the latest celebrity news, entertainment updates, and exclusive stories. DMCA Protected content.",
+    "Official DMCA Copyright Protection Portal. Protect your original content and report copyright infringement on Facebook, Reddit, Google.",
   keywords: [
-    "celebrity news",
-    "entertainment",
-    "celebrity gossip",
-    "Hollywood",
-    "pop culture",
-    "exclusive interviews",
-    "red carpet",
+    "DMCA", "copyright protection", "takedown notice", "Facebook copyright",
+    "content protection", "intellectual property", "celebrity news",
   ],
   authors: [{ name: "Robert Pham" }],
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: "CelebPost",
-    title: "CelebPost — Celebrity News & Entertainment",
+    title: "CelebPost — Celebrity News & Copyright Protection",
     description:
-      "Your source for the latest celebrity news, entertainment updates, and exclusive stories.",
+      "Official DMCA Copyright Protection Portal. Protect your original content and report infringement.",
   },
 };
 

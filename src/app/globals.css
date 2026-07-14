@@ -1,21 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-primary: #0a0a0f;
-  --color-bg-secondary: #111118;
-  --color-bg-card: #16161f;
-  --color-bg-card-hover: #1c1c28;
-  --color-border: #2a2a3a;
-  --color-border-hover: #3a3a5a;
-  --color-text-primary: #e8e8f0;
-  --color-text-secondary: #8888aa;
-  --color-text-muted: #555570;
-  --color-accent: #6366f1;
-  --color-accent-hover: #818cf8;
-  --color-accent-glow: rgba(99, 102, 241, 0.15);
-  --color-success: #22c55e;
-  --color-warning: #f59e0b;
-  --color-danger: #ef4444;
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8f9fa;
+  --color-bg-card: #ffffff;
+  --color-bg-card-hover: #f1f3f5;
+  --color-border: #e2e8f0;
+  --color-border-hover: #cbd5e1;
+  --color-text-primary: #1a202c;
+  --color-text-secondary: #4a5568;
+  --color-text-muted: #718096;
+  --color-accent: #2563eb;
+  --color-accent-hover: #3b82f6;
+  --color-accent-glow: rgba(37, 99, 235, 0.08);
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-danger: #dc2626;
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
@@ -27,32 +27,22 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Gradient text utility */
+/* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+  background: linear-gradient(135deg, #2563eb, #7c3aed, #a855f7);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 /* Signature font */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
 .font-signature {
   font-family: 'Dancing Script', cursive;
 }
 
-/* Badge glow effect */
+/* Badge glow */
 .badge-glow {
-  box-shadow: 0 0 20px rgba(99, 102, 241, 0.2), 0 8px 32px rgba(0,0,0,0.5);
-}
-
-/* Code block */
-.code-block {
-  background: var(--color-bg-primary);
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  padding: 10px 14px;
-  font-family: "SF Mono", "Fira Code", monospace;
-  font-size: 12px;
-  color: var(--color-accent);
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.15), 0 4px 16px rgba(0,0,0,0.08);
 }
