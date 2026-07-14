@@ -5,27 +5,28 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: "DMCA Shield — Copyright Protection",
-    template: "%s | DMCA Shield",
+    default: "CelebPost — Celebrity News & Entertainment",
+    template: "%s | CelebPost",
   },
   description:
-    "Official DMCA Copyright Protection Portal. Protect your original content and report copyright infringement on Facebook, Reddit, Google.",
+    "Your source for the latest celebrity news, entertainment updates, and exclusive stories. DMCA Protected content.",
   keywords: [
-    "DMCA",
-    "copyright protection",
-    "takedown notice",
-    "Facebook copyright",
-    "content protection",
-    "intellectual property",
+    "celebrity news",
+    "entertainment",
+    "celebrity gossip",
+    "Hollywood",
+    "pop culture",
+    "exclusive interviews",
+    "red carpet",
   ],
   authors: [{ name: "Robert Pham" }],
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "DMCA Shield",
-    title: "DMCA Shield — Copyright Protection",
+    siteName: "CelebPost",
+    title: "CelebPost — Celebrity News & Entertainment",
     description:
-      "Official DMCA Copyright Protection Portal. Protect your original content and report infringement.",
+      "Your source for the latest celebrity news, entertainment updates, and exclusive stories.",
   },
 };
 
@@ -36,7 +37,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased min-h-screen flex flex-col">
+      <body className="antialiased min-h-screen flex flex-col bg-bg-primary text-text-primary">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

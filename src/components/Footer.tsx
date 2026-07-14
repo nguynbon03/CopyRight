@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { Newspaper, Shield, Mail, ExternalLink } from "lucide-react";
 
 const navLinks = [
-  { label: "Home", href: "/" },
+  { label: "Latest News", href: "/" },
   { label: "Submit Evidence", href: "/submit" },
-  { label: "DMCA Policy", href: "/policy" },
-  { label: "Original Works", href: "/original-works" },
-  { label: "Guides", href: "/guides" },
+  { label: "Copyright Policy", href: "/policy" },
+  { label: "Our Content", href: "/original-works" },
+  { label: "DMCA Guides", href: "/guides" },
 ];
 
 const resources = [
@@ -17,19 +18,23 @@ const resources = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border bg-bg-secondary pt-16 pb-8">
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+    <footer className="border-t border-border bg-bg-secondary">
+      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
         <div>
-          <div className="flex items-center gap-2 text-lg font-bold mb-3">
-            <span>🛡️</span>
-            <span>DMCA<span className="text-accent">Shield</span></span>
+          <div className="flex items-center gap-2 font-bold mb-3">
+            <Newspaper className="w-5 h-5 text-accent" />
+            <span>Celeb<span className="text-accent">Post</span></span>
           </div>
-          <p className="text-sm text-text-secondary leading-relaxed">
-            Professional copyright protection system. Supports DMCA notifications and global copyright infringement tracking.
+          <p className="text-sm text-text-secondary leading-relaxed mb-4">
+            Your trusted source for celebrity news, entertainment, and exclusive stories. All original content is protected by DMCA and international copyright law.
           </p>
+          <div className="flex items-center gap-1.5 text-xs text-text-muted">
+            <Shield className="w-3.5 h-3.5 text-accent" />
+            DMCA Protected ID: DMCA-2026-CopyRight
+          </div>
         </div>
         <div>
-          <h3 className="font-semibold mb-4">Navigation</h3>
+          <h3 className="text-sm font-semibold mb-4 uppercase tracking-wider text-text-muted">Navigation</h3>
           <ul className="space-y-2">
             {navLinks.map((l) => (
               <li key={l.href}>
@@ -41,31 +46,36 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <h3 className="font-semibold mb-4">DMCA Resources</h3>
+          <h3 className="text-sm font-semibold mb-4 uppercase tracking-wider text-text-muted">Copyright Resources</h3>
           <ul className="space-y-2">
             {resources.map((r) => (
               <li key={r.href}>
-                <a href={r.href} target="_blank" rel="noopener noreferrer" className="text-sm text-text-secondary hover:text-accent transition-colors">
-                  {r.label}
+                <a href={r.href} target="_blank" rel="noopener noreferrer" className="text-sm text-text-secondary hover:text-accent transition-colors inline-flex items-center gap-1">
+                  {r.label} <ExternalLink className="w-3 h-3" />
                 </a>
               </li>
             ))}
           </ul>
         </div>
         <div>
-          <h3 className="font-semibold mb-4">Contact</h3>
-          <div className="space-y-2 text-sm text-text-secondary">
-            <p>📧 <a href="mailto:copirightdc@gmail.com" className="hover:text-accent transition-colors">copirightdc@gmail.com</a></p>
-            <p>👤 Robert Pham</p>
-            <p className="mt-4 text-xs text-text-muted leading-relaxed">
-              All content on this website is protected by DMCA and international copyright law.
+          <h3 className="text-sm font-semibold mb-4 uppercase tracking-wider text-text-muted">Contact</h3>
+          <div className="space-y-3 text-sm text-text-secondary">
+            <p className="flex items-center gap-2">
+              <Mail className="w-4 h-4 text-text-muted" />
+              <a href="mailto:copirightdc@gmail.com" className="hover:text-accent transition-colors">copirightdc@gmail.com</a>
+            </p>
+            <p>Robert Pham — Editor & Content Owner</p>
+            <p className="text-xs text-text-muted leading-relaxed mt-4">
+              Unauthorized reproduction or distribution of any content on this site is strictly prohibited and will be prosecuted under DMCA and applicable copyright law.
             </p>
           </div>
         </div>
       </div>
-      <div className="max-w-6xl mx-auto px-6 border-t border-border pt-6 text-center">
-        <p className="text-sm text-text-muted">© 2026 DMCA Shield. All Rights Reserved.</p>
-        <p className="text-xs text-text-muted mt-1">Protection ID: DMCA-2026-CopyRight</p>
+      <div className="border-t border-border">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-2">
+          <p className="text-xs text-text-muted">&copy; 2026 CelebPost. All Rights Reserved.</p>
+          <p className="text-xs text-text-muted">Protection ID: DMCA-2026-CopyRight</p>
+        </div>
       </div>
     </footer>
   );

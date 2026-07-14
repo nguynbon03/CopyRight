@@ -1,19 +1,21 @@
 interface StepCardProps {
   stepNum: number;
-  icon: string;
+  icon: React.ReactNode;
   title: string;
   description: string;
 }
 
 export default function StepCard({ stepNum, icon, title, description }: StepCardProps) {
   return (
-    <div className="relative bg-bg-card border border-border rounded-2xl p-8 hover:border-border-hover hover:-translate-y-1 transition-all">
-      <span className="absolute -top-3 left-6 px-3 py-1 bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] text-white text-xs font-bold rounded-full">
-        {String(stepNum).padStart(2, "0")}
-      </span>
-      <div className="text-4xl mb-4">{icon}</div>
-      <h3 className="font-semibold mb-2">{title}</h3>
-      <p className="text-sm text-text-secondary leading-relaxed">{description}</p>
+    <div className="relative bg-bg-card border border-border rounded-xl p-6 hover:border-border-hover transition-colors">
+      <div className="flex items-center gap-3 mb-3">
+        <span className="flex items-center justify-center w-7 h-7 rounded-full bg-accent/10 text-accent text-xs font-bold">
+          {stepNum}
+        </span>
+        <span className="text-accent">{icon}</span>
+      </div>
+      <h3 className="font-semibold text-sm mb-1.5">{title}</h3>
+      <p className="text-xs text-text-secondary leading-relaxed">{description}</p>
     </div>
   );
 }

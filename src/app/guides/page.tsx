@@ -1,123 +1,92 @@
 import { Metadata } from "next";
+import { Shield, ExternalLink, Camera, Clock, Mail, FileText, Bookmark } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "DMCA Guides",
-  description:
-    "Step-by-step guides on how to protect your content and report violations on each platform.",
-};
+export const metadata: Metadata = { title: "DMCA Guides", description: "Step-by-step guides for filing DMCA takedown notices on major platforms." };
 
 const guides = [
   {
-    icon: "📘",
+    icon: <Shield className="w-5 h-5" />,
     title: "Facebook / Instagram",
-    meta: "Updated: 07/2026 · Processing time: 24-72 hours",
-    steps: [
-      "Access the Facebook Copyright Report Form",
-      'Select "I am the rights owner"',
-      "Fill in contact information: Robert Pham, copirightdc@gmail.com",
-      "Owner info: select country, content type, link to original work",
-      "Paste the infringing content URL (up to 10 URLs)",
-      "Describe the violation — use the DMCA Notice template",
-      "Sign electronically (Robert Pham) and submit",
-    ],
+    meta: "Processing: 24–72 hours",
+    steps: ["Access the Facebook Copyright Report Form", 'Select "I am the rights owner"', "Enter contact details (Robert Pham, copirightdc@gmail.com)", "Provide a link to the original CelebPost article/media", "Paste the infringing URL (up to 10 per submission)", "Describe the violation and sign electronically"],
     formUrl: "https://www.facebook.com/help/contact/634636770043471",
-    formLabel: "Open Facebook Copyright Form →",
   },
   {
-    icon: "🤖",
+    icon: <Shield className="w-5 h-5" />,
     title: "Reddit",
-    meta: "Updated: 07/2026 · Processing time: 1-3 days",
-    steps: [
-      'Go to reddit.com/report → "Copyright Infringement"',
-      "Provide the URL of the infringing post/comment",
-      "Describe the stolen content",
-      "Provide a link to the original work",
-      "Sign statement under penalty of perjury",
-    ],
+    meta: "Processing: 1–3 days",
+    steps: ['Go to reddit.com/report and select "Copyright Infringement"', "Provide the URL of the infringing post", "Describe the stolen content and link to the original", "Sign under penalty of perjury"],
     formUrl: "https://www.reddit.com/report",
-    formLabel: "Open Reddit Report Form →",
   },
   {
-    icon: "🔍",
+    icon: <Shield className="w-5 h-5" />,
     title: "Google Search",
-    meta: "Updated: 07/2026 · Processing time: 1-2 weeks",
-    steps: [
-      "Access Google Legal Troubleshooter",
-      'Select "Web Search" or "Blogger" removal',
-      "Enter the infringing page URL",
-      "Provide the original work URL",
-      "Describe the violation in detail and sign electronically",
-    ],
+    meta: "Processing: 1–2 weeks",
+    steps: ["Access Google Legal Troubleshooter", 'Select "Web Search" removal', "Enter the infringing page URL", "Provide the original CelebPost URL", "Describe the violation and sign"],
     formUrl: "https://support.google.com/legal/troubleshooter/1114905",
-    formLabel: "Open Google Legal Help →",
   },
 ];
 
 const tips = [
-  { icon: "📸", title: "Screenshot immediately", desc: "When you spot a violation, take a screenshot right away. Include the URL, timestamp, and content." },
-  { icon: "🕐", title: "Record timestamps", desc: "Note the exact time you created the original content and the time you discovered the violation." },
-  { icon: "🔗", title: "Save full URLs", desc: "Do not use shortened links. Copy the full URL from the browser address bar." },
-  { icon: "☁️", title: "Backup evidence", desc: "Upload screenshots to Google Drive, Dropbox, or other cloud storage." },
-  { icon: "📧", title: "Use a professional email", desc: "Facebook and other platforms prioritise business/professional emails when reviewing DMCA claims." },
-  { icon: "📋", title: "Use a template", desc: "Use the DMCA Notice template from the Submit Evidence page to ensure all required information is included." },
+  { icon: <Camera className="w-4 h-4" />, title: "Screenshot immediately", desc: "Capture the full page including URL bar and timestamp." },
+  { icon: <Clock className="w-4 h-4" />, title: "Record timestamps", desc: "Note when our content was published and when you found the copy." },
+  { icon: <FileText className="w-4 h-4" />, title: "Use the template", desc: "Use our DMCA notice template to ensure all required fields are included." },
+  { icon: <Bookmark className="w-4 h-4" />, title: "Backup everything", desc: "Store screenshots and URLs in cloud storage." },
+  { icon: <Mail className="w-4 h-4" />, title: "Professional email", desc: "Use copirightdc@gmail.com when filing — platforms prefer business emails." },
+  { icon: <Shield className="w-4 h-4" />, title: "Follow up", desc: "If no response within the stated timeframe, re-file or escalate." },
 ];
 
 export default function GuidesPage() {
   return (
     <>
-      <section className="pt-28 pb-12 text-center bg-gradient-to-b from-bg-secondary to-bg-primary">
-        <div className="max-w-4xl mx-auto px-6">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">📚 Copyright Protection Guides</h1>
-          <p className="text-text-secondary max-w-xl mx-auto">
-            Step-by-step guides on how to protect your content and report
-            violations on each platform.
-          </p>
+      <section className="pt-20 pb-8 border-b border-border bg-bg-secondary">
+        <div className="max-w-7xl mx-auto px-6">
+          <h1 className="text-2xl font-bold mb-2">DMCA Filing Guides</h1>
+          <p className="text-sm text-text-secondary">Step-by-step instructions for filing DMCA takedown notices on each platform.</p>
         </div>
       </section>
-      <section className="pb-20">
-        <div className="max-w-5xl mx-auto px-6 space-y-6">
+      <section className="py-10">
+        <div className="max-w-5xl mx-auto px-6 space-y-5">
           {guides.map((g) => (
-            <div key={g.title} className="bg-bg-card border border-border rounded-2xl overflow-hidden">
-              <div className="flex items-center gap-5 px-8 py-6 border-b border-border">
-                <span className="text-4xl">{g.icon}</span>
+            <div key={g.title} className="bg-bg-card border border-border rounded-xl overflow-hidden">
+              <div className="flex items-center gap-3 px-6 py-4 border-b border-border">
+                <span className="text-accent">{g.icon}</span>
                 <div>
-                  <h2 className="text-xl font-bold">{g.title}</h2>
-                  <span className="text-sm text-text-muted">{g.meta}</span>
+                  <h2 className="font-semibold text-sm">{g.title}</h2>
+                  <span className="text-[11px] text-text-muted">{g.meta}</span>
                 </div>
               </div>
-              <div className="px-8 py-6">
+              <div className="px-6 py-4">
                 {g.steps.map((s, i) => (
-                  <div key={i} className="grid grid-cols-[40px_1fr] gap-4 py-5 border-b border-border last:border-0">
-                    <span className="w-10 h-10 flex items-center justify-center bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] text-white rounded-full text-sm font-bold">
+                  <div key={i} className="flex gap-3 py-3 border-b border-border last:border-0">
+                    <span className="flex-shrink-0 w-5 h-5 flex items-center justify-center rounded-full bg-accent/10 text-accent text-[10px] font-bold mt-0.5">
                       {i + 1}
                     </span>
-                    <div className="text-sm text-text-secondary leading-relaxed pt-2">{s}</div>
+                    <span className="text-xs text-text-secondary leading-relaxed">{s}</span>
                   </div>
                 ))}
               </div>
-              <div className="flex gap-3 px-8 py-5 border-t border-border">
+              <div className="px-6 py-3 border-t border-border flex gap-3">
                 <a href={g.formUrl} target="_blank" rel="noopener noreferrer"
-                  className="px-5 py-3 bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] text-white rounded-lg text-sm font-semibold hover:shadow-[0_0_20px_rgba(99,102,241,0.3)] transition-all">
-                  {g.formLabel}
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-accent hover:text-accent-hover transition-colors">
+                  Open Form <ExternalLink className="w-3 h-3" />
                 </a>
-                <a href="/submit"
-                  className="px-5 py-3 bg-bg-card border border-border rounded-lg text-sm font-medium hover:border-accent transition-colors">
-                  Create DMCA Notice first →
+                <a href="/submit" className="text-xs text-text-muted hover:text-text-secondary transition-colors">
+                  Create DMCA Notice first
                 </a>
               </div>
             </div>
           ))}
 
-          <div className="bg-bg-card border border-border rounded-2xl overflow-hidden">
-            <div className="flex items-center gap-5 px-8 py-6 border-b border-border">
-              <span className="text-4xl">💡</span>
-              <h2 className="text-xl font-bold">Copyright Protection Tips</h2>
+          <div className="bg-bg-card border border-border rounded-xl overflow-hidden">
+            <div className="px-6 py-4 border-b border-border">
+              <h2 className="font-semibold text-sm">Best Practices</h2>
             </div>
             <div className="grid md:grid-cols-3">
               {tips.map((t, i) => (
-                <div key={i} className="p-6 border-r border-b border-border last:border-r-0 [&:nth-child(3n)]:border-r-0">
-                  <h4 className="font-semibold text-sm mb-2">{t.icon} {t.title}</h4>
-                  <p className="text-sm text-text-secondary leading-relaxed">{t.desc}</p>
+                <div key={i} className="p-5 border-r border-b border-border last:border-r-0 [&:nth-child(3n)]:border-r-0">
+                  <div className="flex items-center gap-2 mb-2 text-accent">{t.icon}<h4 className="font-semibold text-xs">{t.title}</h4></div>
+                  <p className="text-xs text-text-secondary leading-relaxed">{t.desc}</p>
                 </div>
               ))}
             </div>
