@@ -6,45 +6,45 @@ import Link from "next/link";
 import { CopyButton } from "@/components/CopyButton";
 
 export const metadata: Metadata = {
-  title: "DMCA Shield — Bảo Vệ Bản Quyền Của Bạn",
+  title: "DMCA Shield — Protect Your Copyright",
   description:
-    "Trang web DMCA Protection chính thức. Đăng ký DMCA Protected® và báo cáo vi phạm bản quyền trên Facebook, Reddit, Google.",
+    "Official DMCA Copyright Protection Portal. Register DMCA Protected® and report copyright infringement on Facebook, Reddit, Google.",
 };
 
 const steps = [
   {
     stepNum: 1,
     icon: "📸",
-    title: "Phát hiện vi phạm",
-    description: "Tìm thấy nội dung (ảnh, video, bài viết) của bạn bị sao chép hoặc sử dụng trái phép trên Facebook, Reddit, Google...",
+    title: "Detect Infringement",
+    description: "Found your content (photos, videos, articles) copied or used without permission on Facebook, Reddit, Google...",
   },
   {
     stepNum: 2,
     icon: "📝",
-    title: "Thu thập bằng chứng",
-    description: "Chụp screenshot, lưu URL vi phạm, chuẩn bị link đến tác phẩm gốc. Sử dụng trang web này làm bằng chứng sở hữu.",
+    title: "Collect Evidence",
+    description: "Take screenshots, save infringing URLs, prepare links to your original work. Use this website as proof of ownership.",
   },
   {
     stepNum: 3,
     icon: "📨",
-    title: "Gửi DMCA Notice",
-    description: "Điền form DMCA takedown trên Facebook/Google/Reddit. Cung cấp đầy đủ thông tin theo yêu cầu pháp lý.",
+    title: "Send DMCA Notice",
+    description: "Fill out the DMCA takedown form on Facebook/Google/Reddit. Provide all required legal information.",
   },
   {
     stepNum: 4,
     icon: "✅",
-    title: "Nội dung bị gỡ",
-    description: "Nền tảng sẽ xem xét và gỡ nội dung vi phạm. Thời gian xử lý: 24-72 giờ cho Facebook, 1-2 tuần cho Google.",
+    title: "Content Removed",
+    description: "The platform will review and remove infringing content. Processing time: 24-72 hours for Facebook, 1-2 weeks for Google.",
   },
 ];
 
 const contentTypes = [
-  { icon: "🖼️", title: "Hình ảnh & Ảnh", desc: "Photography, illustrations, digital art, avatars, profile pictures" },
+  { icon: "🖼️", title: "Images & Photos", desc: "Photography, illustrations, digital art, avatars, profile pictures" },
   { icon: "🎬", title: "Video & Reels", desc: "Video content, reels, stories, short-form video, live recordings" },
-  { icon: "✍️", title: "Bài viết & Nội dung", desc: "Blog posts, articles, captions, copywriting, social media content" },
-  { icon: "🎵", title: "Âm nhạc & Audio", desc: "Music, podcasts, voice recordings, sound effects, compositions" },
-  { icon: "💻", title: "Thiết kế & Code", desc: "UI/UX design, templates, source code, software, digital products" },
-  { icon: "📦", title: "Thương hiệu", desc: "Logos, brand assets, trademarks, product images, packaging design" },
+  { icon: "✍️", title: "Articles & Content", desc: "Blog posts, articles, captions, copywriting, social media content" },
+  { icon: "🎵", title: "Music & Audio", desc: "Music, podcasts, voice recordings, sound effects, compositions" },
+  { icon: "💻", title: "Design & Code", desc: "UI/UX design, templates, source code, software, digital products" },
+  { icon: "📦", title: "Branding", desc: "Logos, brand assets, trademarks, product images, packaging design" },
 ];
 
 const platforms = [
@@ -52,41 +52,41 @@ const platforms = [
     icon: "📘",
     title: "Facebook / Instagram",
     steps: [
-      'Truy cập Copyright Report Form',
-      'Chọn "I am the rights owner"',
-      "Điền thông tin liên hệ (name, email)",
-      "Cung cấp link tác phẩm gốc (trang web này)",
-      "Dán URL nội dung vi phạm",
-      "Ký điện tử và gửi",
+      "Access the Copyright Report Form",
+      'Select "I am the rights owner"',
+      "Fill in contact information (name, email)",
+      "Provide a link to the original work (this website)",
+      "Paste the infringing content URL",
+      "Sign electronically and submit",
     ],
     formUrl: "https://www.facebook.com/help/contact/634636770043471",
-    formLabel: "Mở Facebook Form →",
+    formLabel: "Open Facebook Form →",
   },
   {
     icon: "🤖",
     title: "Reddit",
     steps: [
-      "Truy cập Reddit DMCA Form",
-      "Cung cấp URL bài post vi phạm",
-      "Miêu tả nội dung bị đánh cắp",
-      "Đính kèm bằng chứng sở hữu",
-      "Ký tuyên bố dưới penalty of perjury",
+      "Access the Reddit DMCA Form",
+      "Provide the infringing post URL",
+      "Describe the stolen content",
+      "Attach proof of ownership",
+      "Sign statement under penalty of perjury",
     ],
     formUrl: "https://www.reddit.com/report",
-    formLabel: "Mở Reddit Form →",
+    formLabel: "Open Reddit Form →",
   },
   {
     icon: "🔍",
     title: "Google Search",
     steps: [
-      "Truy cập Google DMCA Dashboard",
-      'Chọn "Web Search" removal',
-      "Điền URL trang vi phạm",
-      "Cung cấp URL tác phẩm gốc",
-      "Miêu tả chi tiết vi phạm",
+      "Access the Google DMCA Dashboard",
+      'Select "Web Search" removal',
+      "Enter the infringing page URL",
+      "Provide the original work URL",
+      "Describe the violation in detail",
     ],
     formUrl: "https://support.google.com/legal/troubleshooter/1114905",
-    formLabel: "Mở Google Form →",
+    formLabel: "Open Google Form →",
   },
 ];
 
@@ -129,25 +129,24 @@ export default function HomePage() {
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <DMCABadge />
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-5">
-            Bảo Vệ <span className="gradient-text">Bản Quyền</span> Của Bạn
+            Protect Your <span className="gradient-text">Copyright</span>
           </h1>
           <p className="text-lg text-text-secondary max-w-2xl mx-auto mb-8 leading-relaxed">
-            Trang web chính thức dùng để bảo vệ bản quyền nội dung. Đăng ký
-            DMCA Protected® và báo cáo vi phạm bản quyền trên Facebook, Reddit,
-            Google và các nền tảng khác.
+            Official DMCA protection portal. Register DMCA Protected® and report
+            copyright infringement on Facebook, Reddit, Google, and other platforms.
           </p>
           <div className="flex gap-4 justify-center flex-wrap mb-8">
             <Link
               href="/submit"
               className="px-8 py-4 rounded-xl bg-gradient-to-r from-[#6366f1] via-[#8b5cf6] to-[#a855f7] text-white font-semibold hover:shadow-[0_0_20px_rgba(99,102,241,0.3)] transition-all"
             >
-              📤 Gửi bằng chứng vi phạm
+              📤 Submit Evidence
             </Link>
             <Link
               href="/policy"
               className="px-8 py-4 rounded-xl bg-bg-card border border-border text-text-primary font-semibold hover:border-border-hover transition-all"
             >
-              📋 Xem chính sách DMCA
+              📋 View DMCA Policy
             </Link>
           </div>
           <div className="flex gap-6 justify-center flex-wrap text-sm text-text-muted">
@@ -162,8 +161,8 @@ export default function HomePage() {
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-5">
           {[
-            { num: "100%", label: "Nội dung gốc" },
-            { num: "24/7", label: "Giám sát bản quyền" },
+            { num: "100%", label: "Original Content" },
+            { num: "24/7", label: "Copyright Monitoring" },
             { num: "DMCA", label: "Protected® Verified" },
             { num: "Rapid", label: "Takedown Response" },
           ].map((s) => (
@@ -171,9 +170,7 @@ export default function HomePage() {
               key={s.label}
               className="bg-bg-card border border-border rounded-xl p-6 text-center hover:border-border-hover hover:-translate-y-0.5 transition-all"
             >
-              <div className="text-2xl font-extrabold gradient-text mb-2">
-                {s.num}
-              </div>
+              <div className="text-2xl font-extrabold gradient-text mb-2">{s.num}</div>
               <div className="text-sm text-text-secondary">{s.label}</div>
             </div>
           ))}
@@ -183,12 +180,10 @@ export default function HomePage() {
       {/* How it works */}
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-3">
-            DMCA Hoạt Động Như Thế Nào?
-          </h2>
+          <h2 className="text-3xl font-bold text-center mb-3">How DMCA Works</h2>
           <p className="text-text-secondary text-center max-w-xl mx-auto mb-12">
-            Digital Millennium Copyright Act (DMCA) bảo vệ bản quyền nội dung
-            trực tuyến. Quy trình takedown bao gồm 4 bước chính.
+            The Digital Millennium Copyright Act (DMCA) protects copyrighted content online.
+            The takedown process consists of 4 key steps.
           </p>
           <div className="grid md:grid-cols-4 gap-6">
             {steps.map((s) => (
@@ -203,19 +198,17 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="bg-bg-card border border-border rounded-2xl p-10 md:p-12 grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 className="text-2xl font-bold mb-4">
-                📋 Gửi Bằng Chứng Vi Phạm Bản Quyền
-              </h2>
+              <h2 className="text-2xl font-bold mb-4">📋 Submit Copyright Infringement Evidence</h2>
               <p className="text-text-secondary mb-6 leading-relaxed">
-                Đăng URL dẫn đến nội dung vi phạm. Hệ thống sẽ lưu trữ làm
-                bằng chứng cho quá trình DMCA takedown.
+                Register URLs pointing to infringing content. The system will store them as
+                evidence for the DMCA takedown process.
               </p>
               <div className="flex flex-col gap-3 mb-8 text-sm text-text-secondary">
                 {[
-                  "🔗 Submit nhiều URL vi phạm cùng lúc",
-                  "📊 Lưu trữ bằng chứng có timestamp",
-                  "📑 Tạo DMCA notice tự động",
-                  "📤 Xuất báo cáo cho Facebook/Reddit/Google",
+                  "🔗 Submit multiple infringing URLs at once",
+                  "📊 Evidence stored with timestamp",
+                  "📑 Auto-generate DMCA notice",
+                  "📤 Export reports for Facebook/Reddit/Google",
                 ].map((f) => (
                   <div key={f}>{f}</div>
                 ))}
@@ -224,7 +217,7 @@ export default function HomePage() {
                 href="/submit"
                 className="inline-block px-8 py-4 rounded-xl bg-gradient-to-r from-[#6366f1] via-[#8b5cf6] to-[#a855f7] text-white font-semibold hover:shadow-[0_0_20px_rgba(99,102,241,0.3)] transition-all"
               >
-                Gửi bằng chứng ngay →
+                Submit Evidence Now →
               </Link>
             </div>
             <div className="bg-bg-secondary border border-border rounded-xl p-6">
@@ -237,12 +230,8 @@ export default function HomePage() {
                 { label: "Content Type", val: "Photo / Video / Post" },
               ].map((f) => (
                 <div key={f.label} className="mb-3">
-                  <div className="text-[11px] text-text-muted uppercase tracking-wide mb-1">
-                    {f.label}
-                  </div>
-                  <div className="bg-bg-primary border border-border rounded-md px-3 py-2 text-sm text-text-muted">
-                    {f.val}
-                  </div>
+                  <div className="text-[11px] text-text-muted uppercase tracking-wide mb-1">{f.label}</div>
+                  <div className="bg-bg-primary border border-border rounded-md px-3 py-2 text-sm text-text-muted">{f.val}</div>
                 </div>
               ))}
               <div className="mt-4 bg-gradient-to-r from-[#6366f1] to-[#8b5cf6] text-white text-center py-2 rounded-md text-sm font-semibold">
@@ -256,15 +245,10 @@ export default function HomePage() {
       {/* Content Types */}
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Nội Dung Được Bảo Vệ
-          </h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Protected Content Types</h2>
           <div className="grid md:grid-cols-3 gap-5">
             {contentTypes.map((c) => (
-              <div
-                key={c.title}
-                className="bg-bg-card border border-border rounded-xl p-7 hover:border-border-hover hover:-translate-y-0.5 transition-all"
-              >
+              <div key={c.title} className="bg-bg-card border border-border rounded-xl p-7 hover:border-border-hover hover:-translate-y-0.5 transition-all">
                 <div className="text-3xl mb-4">{c.icon}</div>
                 <h3 className="font-semibold mb-2">{c.title}</h3>
                 <p className="text-sm text-text-secondary">{c.desc}</p>
@@ -277,9 +261,7 @@ export default function HomePage() {
       {/* Platform Guides */}
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Hướng Dẫn Báo Cáo Theo Nền Tảng
-          </h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Report by Platform</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {platforms.map((p) => (
               <PlatformCard key={p.title} {...p} />
@@ -291,17 +273,13 @@ export default function HomePage() {
       {/* DMCA Template */}
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-3">
-            📄 Mẫu DMCA Takedown Notice
-          </h2>
+          <h2 className="text-3xl font-bold text-center mb-3">📄 DMCA Takedown Notice Template</h2>
           <p className="text-text-secondary text-center mb-8">
-            Sao chép và điều chỉnh mẫu dưới đây để gửi DMCA takedown notice.
+            Copy and customise the template below to send a DMCA takedown notice.
           </p>
           <div className="bg-bg-card border border-border rounded-xl overflow-hidden">
             <div className="flex justify-between items-center px-6 py-4 bg-bg-secondary border-b border-border">
-              <span className="font-semibold text-sm">
-                DMCA Takedown Notice Template
-              </span>
+              <span className="font-semibold text-sm">DMCA Takedown Notice Template</span>
               <CopyButton text={dmcaTemplate} />
             </div>
             <pre className="p-6 text-sm text-text-secondary leading-relaxed whitespace-pre-wrap font-mono max-h-96 overflow-y-auto">
@@ -313,4 +291,3 @@ export default function HomePage() {
     </>
   );
 }
-

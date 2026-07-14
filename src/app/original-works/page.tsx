@@ -2,9 +2,9 @@ import { Metadata } from "next";
 import OriginalWorksManager from "@/components/OriginalWorksManager";
 
 export const metadata: Metadata = {
-  title: "Tác Phẩm Gốc",
+  title: "Original Works",
   description:
-    "Đăng ký và quản lý tác phẩm gốc. Tất cả nội dung được bảo vệ bởi DMCA và luật bản quyền quốc tế.",
+    "Register and manage your original works. All content is protected by DMCA and international copyright law.",
 };
 
 export default function OriginalWorksPage() {
@@ -12,12 +12,10 @@ export default function OriginalWorksPage() {
     <>
       <section className="pt-28 pb-12 text-center bg-gradient-to-b from-bg-secondary to-bg-primary">
         <div className="max-w-4xl mx-auto px-6">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            🎨 Tác Phẩm Gốc Đã Đăng Ký
-          </h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">🎨 Registered Original Works</h1>
           <p className="text-text-secondary max-w-xl mx-auto">
-            Tất cả nội dung dưới đây được tạo và sở hữu bởi Robert Pham. Mọi
-            sao chép, phân phối, hoặc sử dụng trái phép đều vi phạm bản quyền.
+            All content below was created and is owned by Robert Pham. Any
+            unauthorised copying, distribution, or use is a copyright violation.
           </p>
         </div>
       </section>

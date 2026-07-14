@@ -10,35 +10,53 @@ interface OriginalWork {
   date: string;
   platform: string;
   description: string;
-  registeredAt: string;
 }
 
-const WORK_TYPES = ['Hình ảnh', 'Video', 'Văn bản', 'Âm nhạc', 'Phần mềm', 'Thiết kế', 'Bài viết', 'Khác'];
+const WORK_TYPES = ['Image', 'Video', 'Text', 'Music', 'Design', 'Software', 'Other'];
+const WORK_PLATFORMS = ['Personal Website', 'Facebook', 'Instagram', 'YouTube', 'TikTok', 'Other'];
+
+const TYPE_ICONS: Record<string, string> = {
+  Image: '🖼️',
+  Video: '🎬',
+  Text: '📝',
+  Music: '🎵',
+  Design: '🎨',
+  Software: '💻',
+  Other: '📁',
+};
+
+const inputClass = 'w-full px-4 py-3 bg-bg-primary border border-border rounded-lg text-text-primary text-sm';
+const labelClass = 'text-sm font-medium text-text-secondary mb-1';
+const sectionClass = 'bg-bg-card border border-border rounded-2xl p-6';
 
 export default function OriginalWorksManager() {
   const [works, setWorks] = useState<OriginalWork[]>([]);
   const [title, setTitle] = useState('');
-  const [type, setType] = useState('Hình ảnh');
+  const [type, setType] = useState('Image');
   const [url, setUrl] = useState('');
   const [date, setDate] = useState('');
-  const [platform, setPlatform] = useState('');
+  const [platform, setPlatform] = useState('Personal Website');
   const [description, setDescription] = useState('');
 
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem('dmca_original_works');
-      if (stored) setWorks(JSON.parse(stored));
-    } catch {}
+    const saved = localStorage.getItem('dmca_works');
+    if (saved) {
+      try {
+        setWorks(JSON.parse(saved));
+      } catch {}
+    }
   }, []);
 
   const saveWorks = (updated: OriginalWork[]) => {
     setWorks(updated);
-    localStorage.setItem('dmca_original_works', JSON.stringify(updated));
+    localStorage.setItem('dmca_works', JSON.stringify(updated));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!title.trim()) return;
+  const handleSubmit = () => {
+    if (!title.trim()) {
+      alert('Please enter a title.');
+      return;
+    }
 
     const newWork: OriginalWork = {
       id: Date.now().toString(),
@@ -46,217 +64,140 @@ export default function OriginalWorksManager() {
       type,
       url: url.trim(),
       date,
-      platform: platform.trim(),
+      platform,
       description: description.trim(),
-      registeredAt: new Date().toISOString(),
     };
 
-    saveWorks([newWork, ...works]);
-
+    saveWorks([...works, newWork]);
     setTitle('');
-    setType('Hình ảnh');
+    setType('Image');
     setUrl('');
     setDate('');
-    setPlatform('');
+    setPlatform('Personal Website');
     setDescription('');
   };
 
   const deleteWork = (id: string) => {
-    if (!confirm('Bạn có chắc muốn xóa tác phẩm này?')) return;
     saveWorks(works.filter((w) => w.id !== id));
   };
 
-  const exportText = () => {
-    const text = works
-      .map(
-        (w, i) =>
-          `${i + 1}. ${w.title}\n   Loại: ${w.type}\n   URL: ${w.url || 'N/A'}\n   Ngày: ${w.date || 'N/A'}\n   Nền tảng: ${w.platform || 'N/A'}\n   Mô tả: ${w.description || 'N/A'}\n   Đăng ký: ${new Date(w.registeredAt).toLocaleDateString('vi-VN')}`
-      )
-      .join('\n\n');
+  const exportTextReport = () => {
+    const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    let report = `ORIGINAL WORKS EVIDENCE REPORT\nGenerated: ${today}\nTotal Works: ${works.length}\n${'='.repeat(50)}\n\n`;
 
-    const content = `BÁO CÁO TÁC PHẨM GỐC\n========================\nNgày tạo: ${new Date().toLocaleDateString('vi-VN')}\nTổng: ${works.length} tác phẩm\n========================\n\n${text}`;
+    works.forEach((work, i) => {
+      report += `${i + 1}. ${work.title}\n`;
+      report += `   Type: ${work.type}\n`;
+      report += `   Platform: ${work.platform}\n`;
+      report += `   Date: ${work.date || 'N/A'}\n`;
+      report += `   URL: ${work.url || 'N/A'}\n`;
+      report += `   Description: ${work.description || 'N/A'}\n\n`;
+    });
 
-    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-    const blobUrl = URL.createObjectURL(blob);
+    const blob = new Blob([report], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = blobUrl;
-    a.download = `original-works-${new Date().toISOString().slice(0, 10)}.txt`;
+    a.href = url;
+    a.download = 'original-works-report.txt';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(blobUrl);
+    URL.revokeObjectURL(url);
   };
 
   const exportJSON = () => {
     const blob = new Blob([JSON.stringify(works, null, 2)], { type: 'application/json' });
-    const blobUrl = URL.createObjectURL(blob);
+    const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = blobUrl;
-    a.download = `original-works-${new Date().toISOString().slice(0, 10)}.json`;
+    a.href = url;
+    a.download = 'original-works.json';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(blobUrl);
+    URL.revokeObjectURL(url);
   };
 
-  const inputClass =
-    'w-full px-3 py-2.5 rounded-lg bg-bg-primary border border-border text-text-primary text-sm placeholder:text-text-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-colors';
-  const selectClass =
-    'w-full px-3 py-2.5 rounded-lg bg-bg-primary border border-border text-text-primary text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-colors';
-  const labelClass = 'block text-sm font-medium text-text-secondary mb-1.5';
-
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {/* Registration Form */}
-      <form onSubmit={handleSubmit} className="bg-bg-card border border-border rounded-xl p-6">
-        <h3 className="text-text-primary font-semibold text-lg mb-4 flex items-center gap-2">
-          <span className="text-xl">📝</span> Đăng ký tác phẩm gốc
-        </h3>
+      <div className={sectionClass}>
+        <h2 className="text-lg font-semibold text-text-primary mb-4">📝 Register Original Work</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="md:col-span-2">
-            <label className={labelClass}>Tên tác phẩm *</label>
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="Nhập tên tác phẩm..."
-              className={inputClass}
-              required
-            />
+            <label className={labelClass}>Title</label>
+            <input type="text" className={inputClass} value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title of your original work" />
           </div>
           <div>
-            <label className={labelClass}>Loại</label>
-            <select value={type} onChange={(e) => setType(e.target.value)} className={selectClass}>
-              {WORK_TYPES.map((t) => (
-                <option key={t} value={t}>{t}</option>
-              ))}
+            <label className={labelClass}>Content Type</label>
+            <select className={inputClass} value={type} onChange={(e) => setType(e.target.value)}>
+              {WORK_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
             </select>
           </div>
           <div>
-            <label className={labelClass}>URL tác phẩm</label>
-            <input
-              type="url"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              placeholder="https://..."
-              className={inputClass}
-            />
+            <label className={labelClass}>Platform</label>
+            <select className={inputClass} value={platform} onChange={(e) => setPlatform(e.target.value)}>
+              {WORK_PLATFORMS.map((p) => <option key={p} value={p}>{p}</option>)}
+            </select>
           </div>
           <div>
-            <label className={labelClass}>Ngày tạo</label>
-            <input
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              className={inputClass}
-            />
+            <label className={labelClass}>URL</label>
+            <input type="url" className={inputClass} value={url} onChange={(e) => setUrl(e.target.value)} placeholder="https://example.com/your-work" />
           </div>
           <div>
-            <label className={labelClass}>Nền tảng đăng</label>
-            <input
-              type="text"
-              value={platform}
-              onChange={(e) => setPlatform(e.target.value)}
-              placeholder="VD: DeviantArt, Pixiv..."
-              className={inputClass}
-            />
+            <label className={labelClass}>Date</label>
+            <input type="date" className={inputClass} value={date} onChange={(e) => setDate(e.target.value)} />
           </div>
           <div className="md:col-span-2">
-            <label className={labelClass}>Mô tả</label>
-            <input
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Mô tả ngắn về tác phẩm..."
-              className={inputClass}
-            />
+            <label className={labelClass}>Description</label>
+            <textarea className={`${inputClass} min-h-[80px]`} value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Describe your original work..." />
           </div>
         </div>
-        <button
-          type="submit"
-          className="mt-4 px-6 py-2.5 rounded-lg bg-accent hover:bg-accent-hover text-white text-sm font-medium transition-colors duration-200"
-        >
-          ➕ Đăng ký tác phẩm
+        <button onClick={handleSubmit} className="mt-4 px-6 py-3 bg-accent text-white font-medium rounded-lg hover:opacity-90 transition-opacity text-sm">
+          ➕ Register Work
         </button>
-      </form>
+      </div>
 
       {/* Gallery */}
-      <div>
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-text-primary font-semibold text-lg">
-            📂 Tác phẩm đã đăng ký ({works.length})
-          </h3>
-          {works.length > 0 && (
-            <div className="flex gap-2">
-              <button
-                onClick={exportText}
-                className="px-3 py-1.5 rounded-lg bg-bg-card border border-border text-text-secondary hover:text-text-primary hover:border-border-hover text-xs font-medium transition-colors"
-              >
-                📄 Text
-              </button>
-              <button
-                onClick={exportJSON}
-                className="px-3 py-1.5 rounded-lg bg-bg-card border border-border text-text-secondary hover:text-text-primary hover:border-border-hover text-xs font-medium transition-colors"
-              >
-                📦 JSON
-              </button>
-            </div>
-          )}
-        </div>
-
+      <div className={sectionClass}>
+        <h2 className="text-lg font-semibold text-text-primary mb-4">🖼️ Registered Works ({works.length})</h2>
         {works.length === 0 ? (
-          <div className="bg-bg-card border border-border rounded-xl p-8 text-center">
-            <p className="text-text-muted text-sm">Chưa có tác phẩm nào được đăng ký.</p>
-          </div>
+          <p className="text-text-muted text-sm text-center py-8">No works registered yet. Add your first original work above.</p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {works.map((work) => (
-              <div
-                key={work.id}
-                className="group bg-bg-card border border-border rounded-xl p-4 hover:border-accent/30 transition-all duration-300"
-              >
-                <div className="flex items-start justify-between mb-2">
-                  <h4 className="text-text-primary font-medium text-sm leading-tight pr-2 group-hover:text-accent-hover transition-colors">
-                    {work.title}
-                  </h4>
-                  <button
-                    onClick={() => deleteWork(work.id)}
-                    className="flex-shrink-0 p-1 rounded text-text-muted hover:text-danger hover:bg-danger/10 transition-colors"
-                    aria-label="Xóa"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                  </button>
-                </div>
-                <div className="space-y-1 text-xs text-text-secondary">
-                  <div className="flex gap-2">
-                    <span className="px-1.5 py-0.5 rounded bg-accent/10 text-accent">{work.type}</span>
-                    {work.platform && (
-                      <span className="px-1.5 py-0.5 rounded bg-bg-primary">{work.platform}</span>
-                    )}
+              <div key={work.id} className="bg-bg-primary border border-border rounded-xl p-4 space-y-2">
+                <div className="flex items-start justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">{TYPE_ICONS[work.type] || '📁'}</span>
+                    <h3 className="text-sm font-semibold text-text-primary truncate">{work.title}</h3>
                   </div>
-                  {work.url && (
-                    <a
-                      href={work.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-accent hover:underline truncate"
-                    >
-                      {work.url}
-                    </a>
-                  )}
-                  {work.description && (
-                    <p className="text-text-muted truncate">{work.description}</p>
-                  )}
-                  <p className="text-text-muted">
-                    Đăng ký: {new Date(work.registeredAt).toLocaleDateString('vi-VN')}
-                  </p>
+                  <button onClick={() => deleteWork(work.id)} className="text-text-muted hover:text-red-400 transition-colors text-xs">✕</button>
                 </div>
+                <div className="text-xs text-text-muted">{work.type} · {work.platform}</div>
+                {work.date && <div className="text-xs text-text-muted">📅 {work.date}</div>}
+                {work.description && <p className="text-xs text-text-secondary line-clamp-2">{work.description}</p>}
+                {work.url && (
+                  <a href={work.url} target="_blank" rel="noopener noreferrer" className="text-xs text-accent hover:underline truncate block">
+                    🔗 {work.url}
+                  </a>
+                )}
               </div>
             ))}
           </div>
         )}
+      </div>
+
+      {/* Export Section */}
+      <div className={sectionClass}>
+        <h2 className="text-lg font-semibold text-text-primary mb-4">📤 Export</h2>
+        <div className="flex gap-3">
+          <button onClick={exportTextReport} className="px-4 py-3 bg-bg-primary border border-border text-text-primary font-medium rounded-lg hover:border-border-hover transition-colors text-sm">
+            📄 Export Evidence Report
+          </button>
+          <button onClick={exportJSON} className="px-4 py-3 bg-bg-primary border border-border text-text-primary font-medium rounded-lg hover:border-border-hover transition-colors text-sm">
+            📦 Export JSON
+          </button>
+        </div>
       </div>
     </div>
   );

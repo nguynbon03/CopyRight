@@ -3,11 +3,11 @@ import Link from "next/link";
 import { useState } from "react";
 
 const links = [
-  { href: "/", label: "Trang chủ" },
-  { href: "/submit", label: "Gửi bằng chứng" },
-  { href: "/policy", label: "Chính sách DMCA" },
-  { href: "/original-works", label: "Tác phẩm gốc" },
-  { href: "/guides", label: "Hướng dẫn" },
+  { href: "/", label: "Home" },
+  { href: "/submit", label: "Submit Evidence" },
+  { href: "/policy", label: "DMCA Policy" },
+  { href: "/original-works", label: "Original Works" },
+  { href: "/guides", label: "Guides" },
 ];
 
 export function Navbar() {
@@ -22,32 +22,21 @@ export function Navbar() {
         <ul className="hidden md:flex gap-1 list-none">
           {links.map((l) => (
             <li key={l.href}>
-              <Link
-                href={l.href}
-                className="px-4 py-2 rounded-md text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-bg-card transition-colors"
-              >
+              <Link href={l.href} className="px-4 py-2 rounded-md text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-bg-card transition-colors">
                 {l.label}
               </Link>
             </li>
           ))}
         </ul>
-        <button
-          className="md:hidden text-xl cursor-pointer"
-          onClick={() => setOpen(!open)}
-          aria-label="Menu"
-        >
+        <button className="md:hidden text-xl cursor-pointer" onClick={() => setOpen(!open)} aria-label="Menu">
           {open ? "✕" : "☰"}
         </button>
       </div>
       {open && (
         <div className="md:hidden bg-bg-secondary border-b border-border px-6 py-4 flex flex-col gap-2">
           {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="px-4 py-3 rounded-md text-sm text-text-secondary hover:text-text-primary hover:bg-bg-card transition-colors"
-            >
+            <Link key={l.href} href={l.href} onClick={() => setOpen(false)}
+              className="px-4 py-3 rounded-md text-sm text-text-secondary hover:text-text-primary hover:bg-bg-card transition-colors">
               {l.label}
             </Link>
           ))}

@@ -6,7 +6,7 @@ export function CopyButton({ text }: { text: string }) {
       onClick={() => navigator.clipboard.writeText(text)}
       className="px-4 py-2 bg-bg-card border border-border rounded-md text-sm font-medium hover:border-accent transition-colors cursor-pointer"
     >
-      📋 Sao chép
+      📋 Copy
     </button>
   );
 }
