@@ -7,6 +7,7 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/blog", label: "Articles" },
   { href: "/submit", label: "Submit Evidence" },
+  { href: "/legal", label: "Legal" },
   { href: "/policy", label: "Copyright Policy" },
   { href: "/original-works", label: "Our Content" },
   { href: "/guides", label: "DMCA Guides" },

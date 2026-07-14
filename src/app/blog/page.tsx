@@ -1,9 +1,11 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import {
-  Camera, Video, FileText, Star, TrendingUp, Award, Users,
-  Music, Search, ChevronRight, Bookmark, Shield,
+  FileText, Star, TrendingUp, Users,
+  Camera, Video, Music, Award, Search, Shield,
+  ChevronRight, Download, FileCheck, Stamp, Scale,
 } from "lucide-react";
+import { ArticleThumbnail } from "@/components/ArticleThumbnail";
 
 export const metadata: Metadata = {
   title: "Latest Celebrity News & Exclusives",
@@ -11,7 +13,6 @@ export const metadata: Metadata = {
     "Browse the latest celebrity news, exclusive interviews, red carpet coverage, and entertainment stories. All original content protected by DMCA.",
 };
 
-/* ── Article Data ── */
 const articles = [
   { id: 1, cat: "EXCLUSIVE", title: "Inside the Private World of Hollywood's Most Elusive A-Lister", excerpt: "An intimate look at the life, career, and untold stories behind one of cinema's biggest names.", author: "Robert Pham", date: "Jul 14, 2026", readTime: "8 min", type: "article" },
   { id: 2, cat: "RED CARPET", title: "Best Dressed at the 2026 Met Gala — Every Look Ranked", excerpt: "From show-stopping gowns to daring menswear, we rank every major arrival at fashion's biggest night.", author: "Robert Pham", date: "Jul 13, 2026", readTime: "12 min", type: "article" },
@@ -56,22 +57,15 @@ const articles = [
 ];
 
 const categories = [
-  { name: "All", count: articles.length, icon: <FileText className="w-3.5 h-3.5" /> },
-  { name: "Exclusive", count: articles.filter(a => a.cat === "EXCLUSIVE").length, icon: <Star className="w-3.5 h-3.5" /> },
-  { name: "Interview", count: articles.filter(a => a.type === "interview").length, icon: <Users className="w-3.5 h-3.5" /> },
-  { name: "Photo", count: articles.filter(a => a.type === "photo").length, icon: <Camera className="w-3.5 h-3.5" /> },
-  { name: "Video", count: articles.filter(a => a.type === "video").length, icon: <Video className="w-3.5 h-3.5" /> },
-  { name: "Music", count: articles.filter(a => a.cat === "MUSIC").length, icon: <Music className="w-3.5 h-3.5" /> },
-  { name: "Film", count: articles.filter(a => a.cat === "FILM").length, icon: <Award className="w-3.5 h-3.5" /> },
-  { name: "TV", count: articles.filter(a => a.cat === "TV").length, icon: <TrendingUp className="w-3.5 h-3.5" /> },
+  { name: "All", count: articles.length },
+  { name: "Exclusive", count: articles.filter(a => a.cat === "EXCLUSIVE").length },
+  { name: "Interview", count: articles.filter(a => a.type === "interview").length },
+  { name: "Photo", count: articles.filter(a => a.type === "photo").length },
+  { name: "Video", count: articles.filter(a => a.type === "video").length },
+  { name: "Music", count: articles.filter(a => a.cat === "MUSIC").length },
+  { name: "Film", count: articles.filter(a => a.cat === "FILM").length },
+  { name: "TV", count: articles.filter(a => a.cat === "TV").length },
 ];
-
-const typeIcons: Record<string, React.ReactNode> = {
-  article: <FileText className="w-3.5 h-3.5" />,
-  photo: <Camera className="w-3.5 h-3.5" />,
-  video: <Video className="w-3.5 h-3.5" />,
-  interview: <Users className="w-3.5 h-3.5" />,
-};
 
 export default function BlogPage() {
   const featured = articles[0];
@@ -98,15 +92,10 @@ export default function BlogPage() {
               </span>
             </div>
           </div>
-
-          {/* Category Tabs */}
           <div className="flex gap-1 overflow-x-auto pb-2">
             {categories.map((c) => (
-              <button key={c.name}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium text-text-secondary hover:text-text-primary hover:bg-bg-card transition-colors whitespace-nowrap cursor-pointer">
-                {c.icon}
-                {c.name}
-                <span className="text-text-muted ml-0.5">({c.count})</span>
+              <button key={c.name} className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium text-text-secondary hover:text-text-primary hover:bg-bg-card transition-colors whitespace-nowrap cursor-pointer">
+                {c.name} <span className="text-text-muted">({c.count})</span>
               </button>
             ))}
           </div>
@@ -116,92 +105,58 @@ export default function BlogPage() {
       {/* Featured */}
       <section className="py-6">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="bg-bg-card border border-border rounded-xl overflow-hidden group cursor-pointer">
-            <div className="grid md:grid-cols-[1fr_1.2fr]">
-              <div className="aspect-[4/3] md:aspect-auto bg-gradient-to-br from-bg-secondary to-accent/5 flex items-center justify-center">
-                <Camera className="w-12 h-12 text-accent/20" />
-              </div>
-              <div className="p-6 md:p-8 flex flex-col justify-center">
-                <span className="text-[10px] font-bold tracking-widest uppercase text-accent mb-2">{featured.cat}</span>
-                <h2 className="text-xl md:text-2xl font-bold leading-tight mb-3 group-hover:text-accent transition-colors">
-                  {featured.title}
-                </h2>
-                <p className="text-sm text-text-secondary mb-4 leading-relaxed">{featured.excerpt}</p>
-                <div className="flex items-center gap-3 text-xs text-text-muted">
-                  <span>{featured.author}</span>
-                  <span className="w-1 h-1 rounded-full bg-text-muted" />
-                  <span>{featured.date}</span>
-                  <span className="w-1 h-1 rounded-full bg-text-muted" />
-                  <span>{featured.readTime}</span>
-                </div>
+          <Link href={`/blog/${featured.id}`} className="block bg-bg-card border border-border rounded-xl overflow-hidden group">
+            <ArticleThumbnail category={featured.cat} title={featured.title} type={featured.type} size="lg" />
+            <div className="p-6">
+              <h2 className="text-xl font-bold leading-tight mb-2 group-hover:text-accent transition-colors">{featured.title}</h2>
+              <p className="text-sm text-text-secondary mb-3">{featured.excerpt}</p>
+              <div className="flex items-center gap-3 text-xs text-text-muted">
+                <span>{featured.author}</span><span className="w-1 h-1 rounded-full bg-text-muted" /><span>{featured.date}</span><span className="w-1 h-1 rounded-full bg-text-muted" /><span>{featured.readTime}</span>
               </div>
             </div>
-          </div>
+          </Link>
         </div>
       </section>
 
-      {/* Article Grid */}
-      <section className="pb-16">
+      {/* Grid */}
+      <section className="pb-10">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {rest.map((a) => (
-              <article key={a.id} className="bg-bg-card border border-border rounded-xl overflow-hidden group cursor-pointer hover:border-border-hover transition-colors">
-                <div className="aspect-[16/9] bg-gradient-to-br from-bg-secondary to-accent/3 flex items-center justify-center relative">
-                  <span className="text-accent/15">{typeIcons[a.type] || <FileText className="w-8 h-8" />}</span>
-                  <span className="absolute top-3 left-3 text-[9px] font-bold tracking-widest uppercase text-accent bg-bg-primary/80 backdrop-blur-sm px-2 py-0.5 rounded">
-                    {a.cat}
-                  </span>
-                  {a.type === "video" && (
-                    <span className="absolute top-3 right-3 text-[9px] font-medium text-text-muted bg-bg-primary/80 backdrop-blur-sm px-2 py-0.5 rounded flex items-center gap-1">
-                      <Video className="w-3 h-3" /> Video
-                    </span>
-                  )}
-                  {a.type === "photo" && (
-                    <span className="absolute top-3 right-3 text-[9px] font-medium text-text-muted bg-bg-primary/80 backdrop-blur-sm px-2 py-0.5 rounded flex items-center gap-1">
-                      <Camera className="w-3 h-3" /> Gallery
-                    </span>
-                  )}
-                </div>
+              <Link key={a.id} href={`/blog/${a.id}`}
+                className="bg-bg-card border border-border rounded-xl overflow-hidden group hover:border-border-hover transition-colors">
+                <ArticleThumbnail category={a.cat} title={a.title} type={a.type} size="sm" />
                 <div className="p-4">
-                  <h3 className="text-sm font-semibold leading-snug mb-2 group-hover:text-accent transition-colors line-clamp-2">
-                    {a.title}
-                  </h3>
+                  <h3 className="text-sm font-semibold leading-snug mb-2 group-hover:text-accent transition-colors line-clamp-2">{a.title}</h3>
                   <p className="text-xs text-text-secondary leading-relaxed mb-3 line-clamp-2">{a.excerpt}</p>
                   <div className="flex items-center justify-between text-[11px] text-text-muted">
-                    <div className="flex items-center gap-2">
-                      <span>{a.author}</span>
-                      <span className="w-1 h-1 rounded-full bg-text-muted" />
-                      <span>{a.date}</span>
-                    </div>
+                    <div className="flex items-center gap-2"><span>{a.author}</span><span className="w-1 h-1 rounded-full bg-text-muted" /><span>{a.date}</span></div>
                     <span>{a.readTime}</span>
                   </div>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
-
-          {/* Load More */}
           <div className="text-center mt-10">
             <button className="inline-flex items-center gap-2 px-6 py-2.5 bg-bg-card border border-border rounded-lg text-sm font-medium text-text-secondary hover:border-accent hover:text-accent transition-colors cursor-pointer">
-              Load More Articles <ChevronRight className="w-4 h-4" />
+              Load More <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>
       </section>
 
-      {/* Bottom Banner */}
-      <section className="py-8 border-t border-border bg-bg-secondary">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <Shield className="w-5 h-5 text-accent" />
+      {/* Legal Documents CTA */}
+      <section className="py-10 border-t border-border bg-bg-secondary">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <p className="text-sm font-semibold">All content is original and DMCA Protected</p>
-              <p className="text-xs text-text-muted">Unauthorised reproduction of any article, photograph, or video is prohibited under 17 U.S.C. § 512.</p>
+              <h2 className="text-lg font-bold mb-1">Copyright & Legal Documents</h2>
+              <p className="text-xs text-text-secondary">Official certificates, registration documents, and takedown templates for DMCA enforcement.</p>
             </div>
+            <Link href="/legal" className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent/10 border border-accent/30 rounded-lg text-sm font-medium text-accent hover:bg-accent/20 transition-colors">
+              <Scale className="w-4 h-4" /> View Legal Documents
+            </Link>
           </div>
-          <Link href="/submit" className="text-xs font-medium text-accent hover:text-accent-hover transition-colors flex items-center gap-1">
-            Report Infringement <ChevronRight className="w-3 h-3" />
-          </Link>
         </div>
       </section>
     </>
