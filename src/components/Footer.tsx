@@ -2,7 +2,8 @@ import Link from "next/link";
 import { Newspaper, Shield, Mail, ExternalLink } from "lucide-react";
 
 const navLinks = [
-  { label: "Latest News", href: "/" },
+  { label: "Home", href: "/" },
+  { label: "Articles", href: "/blog" },
   { label: "Submit Evidence", href: "/submit" },
   { label: "Copyright Policy", href: "/policy" },
   { label: "Our Content", href: "/original-works" },

@@ -4,7 +4,8 @@ import { useState } from "react";
 import { Newspaper, Shield, Menu, X } from "lucide-react";
 
 const links = [
-  { href: "/", label: "Latest" },
+  { href: "/", label: "Home" },
+  { href: "/blog", label: "Articles" },
   { href: "/submit", label: "Submit Evidence" },
   { href: "/policy", label: "Copyright Policy" },
   { href: "/original-works", label: "Our Content" },
